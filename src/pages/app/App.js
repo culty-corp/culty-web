@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Button from '@material-ui/core/Button';
 
-import logo from './logo.svg';
+import logo from '../../assets/logo.svg';
 import './App.css';
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
         >
           Learn React
         </a>
-        <br></br>
+        <br />
         <Button variant="contained" color="primary">
           Hello World
         </Button>
