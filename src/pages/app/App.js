@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Conteudo from '../components/Conteudo'
+import Conteudo from '../components/conteudo/Conteudo'
 
 class App extends Component {
   render() {

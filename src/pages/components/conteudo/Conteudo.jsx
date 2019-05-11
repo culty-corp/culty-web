@@ -16,7 +16,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 const styles = theme => ({
   card: {
     maxWidth: 400,
-    backgroundColor: '#585958',
+    backgroundColor: '#1e1e1e',
   },
   estiloTexto: {
     color: '#ECF2EC'
@@ -31,14 +31,13 @@ const styles = theme => ({
   avatar: {
     backgroundColor: '#FF8C00',
   },
+  botao: {
+    color: '#FF8C00',
+  },
 });
 
 class Conteudo extends React.Component {
   state = { expanded: false };
-
-  handleExpandClick = () => {
-    this.setState(state => ({ expanded: !state.expanded }));
-  };
 
   render() {
     const { classes } = this.props;
@@ -48,7 +47,7 @@ class Conteudo extends React.Component {
         <CardHeader
           avatar={
             <Avatar aria-label="Recipe" className={classes.avatar}>
-              R
+              E
             </Avatar>
           }
           action={
@@ -56,12 +55,16 @@ class Conteudo extends React.Component {
               <MoreVertIcon />
             </IconButton>
           }
+          classes={{
+            title: classes.estiloTexto,
+            subheader: classes.estiloTexto,
+          }}
           title="O Grito"
           subheader=" Edvard Munch"
         />
         <CardMedia
           className= { classes.media }
-          image='./static/media/ogrito.440380c6.jpg'
+          image= { require('../../../assets/ogrito.jpg') }
           title="O Grito"
         />
         <CardContent>
@@ -70,10 +73,10 @@ class Conteudo extends React.Component {
           </Typography>
         </CardContent>
         <CardActions className={classes.actions} disableActionSpacing>
-          <IconButton aria-label="Add to favorites">
-            <FavoriteIcon color="primary"/>
+          <IconButton aria-label="Add to favorites" className={ classes.botao }>
+            <FavoriteIcon />
           </IconButton>
-          <IconButton aria-label="Share">
+          <IconButton aria-label="Share" className={ classes.botao }>
             <ShareIcon />
           </IconButton>
         </CardActions>
