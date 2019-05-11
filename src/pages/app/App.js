@@ -1,34 +1,17 @@
-import React from 'react';
-
-import ReactDOM from 'react-dom';
-import Button from '@material-ui/core/Button';
-
-import logo from '../../assets/logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import Conteudo from '../components/Conteudo'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <br />
-        <Button variant="contained" color="primary">
-          Hello World
-        </Button>
-      </header>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <div className="culty-wraper">
+        <div className="culty-header">
+          <Conteudo />
+        </div>
+      </div>
+    )
+  }
 }
 
 export default App;
