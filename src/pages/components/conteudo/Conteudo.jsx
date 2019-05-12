@@ -2,18 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-
 import Collapse from '@material-ui/core/Collapse';
-
 import * as Map from '../../../Maps';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-
 import ConteudoHeader from './ConteudoHeader'
 import ConteudoActions from './ConteudoActions'
+import ConteudoMidia from './ConteudoMidia'
 
 
 const styles = theme => ({
@@ -23,17 +20,7 @@ const styles = theme => ({
   },
   estiloTexto: {
     color: '#ECF2EC'
-  },
-  estiloSubTitulo: {
-    color: '#FFDEB5'
-  },
-  media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
-  },
-  botao: {
-    color: '#ff9703',
-  },
+  }
 });
 
 class Conteudo extends React.Component {
@@ -49,21 +36,12 @@ class Conteudo extends React.Component {
     return (
       <Card className={classes.card}>
         <ConteudoHeader />
-
-        {
-          postagemAtual.tipoMidia !== "Texto" &&
-          <CardMedia
-            className={classes.media}
-            image={postagemAtual.conteudo}
-            title={postagemAtual.titulo}
-          />
-        }
-        
         <CardContent>
           <Typography component="p" className={classes.estiloTexto}>
             {postagemAtual.resumo}
           </Typography>
         </CardContent>
+        <ConteudoMidia />
         <ConteudoActions expanded={this.state.expanded} expandirPostagem={() => this.expandirPostagem()} />
         <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
           <CardContent>
@@ -82,12 +60,13 @@ class Conteudo extends React.Component {
 
 Conteudo.propTypes = {
   classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = store => {
-  const posts = store.posts;
+  const postagemAtual = store.posts.postagemAtual;
   return {
-    ...posts
+    postagemAtual
   };
 };
 

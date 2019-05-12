@@ -1,61 +1,54 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import CardActions from '@material-ui/core/CardActions';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import FavoriteIcon from '@material-ui/icons/Favorite';
+import LikeIcon from '@material-ui/icons/ThumbUp';
 import ShareIcon from '@material-ui/icons/Share';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import IconButton from '@material-ui/core/IconButton';
-import classnames from 'classnames';    
+import classnames from 'classnames';
 import * as Map from '../../../Maps';
 
 
 const styles = theme => ({
-    estiloTexto: {
-        color: '#ECF2EC'
-    },
-    estiloSubTitulo: {
-        color: '#FFDEB5'
-    },
-    avatar: {
-        backgroundColor: '#FF8C00',
-    },
     botao: {
         color: '#ff9703',
     },
+    botaoShare: {
+        color: '#ff9703',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginLeft: '32%',
+    },
     actions: {
         display: 'flex',
-      },
-      expand: {
+        flexDirection: 'row'
+    },
+    expand: {
         transform: 'rotate(0deg)',
         marginLeft: 'auto',
         color: '#FF8C00',
         transition: theme.transitions.create('transform', {
-          duration: theme.transitions.duration.shortest,
+            duration: theme.transitions.duration.shortest,
         }),
-      },
-      expandOpen: {
+    },
+    expandOpen: {
         transform: 'rotate(180deg)',
-      },
+    },
 });
 
 class ConteudoActions extends React.Component {
-
-    handleExpandClick = () => {
-        this.setState(state => ({ expanded: !state.expanded }));
-    };
 
     render() {
         const { classes, postagemAtual } = this.props;
 
         return (
             <CardActions className={classes.actions} disableActionSpacing>
-                <IconButton aria-label="Add to favorites" className={classes.botao} onClick={() => this.props.passarPost()}>
-                    <FavoriteIcon />
+                <IconButton aria-label="Cultyr" className={classes.botao} onClick={() => this.props.passarPost()}>
+                    <LikeIcon />
                 </IconButton>
-                <IconButton aria-label="Share" className={classes.botao}>
+                <IconButton aria-label="Compartilhar" className={classes.botaoShare}>
                     <ShareIcon />
                 </IconButton>
                 {
@@ -66,7 +59,7 @@ class ConteudoActions extends React.Component {
                         })}
                         onClick={() => this.props.expandirPostagem()}
                         aria-expanded={this.props.expanded}
-                        aria-label="Show more"
+                        aria-label="Quero ler mais"
                     >
                         <ExpandMoreIcon />
                     </IconButton>
@@ -76,14 +69,10 @@ class ConteudoActions extends React.Component {
     }
 }
 
-ConteudoActions.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
-
 const mapStateToProps = store => {
-    const posts = store.posts;
+    const postagemAtual = store.posts.postagemAtual;
     return {
-        ...posts
+        postagemAtual
     };
 };
 

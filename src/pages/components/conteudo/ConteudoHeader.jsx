@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import CardHeader from '@material-ui/core/CardHeader';
 import Avatar from '@material-ui/core/Avatar';
@@ -35,36 +34,32 @@ class ConteudoHeader extends React.Component {
     const { classes, postagemAtual } = this.props;
 
     return (
-        <CardHeader
-          avatar={
-            <Avatar aria-label="Recipe" className={classes.avatar}>
-              { this.props.postagemAtual.autor.charAt(0) }
-            </Avatar>
-          }
-          action={
-            <IconButton className={classes.botao}>
-              <MoreVertIcon />
-            </IconButton>
-          }
-          classes={{
-            title: classes.estiloTexto,
-            subheader: classes.estiloSubTitulo,
-          }}
-          title={postagemAtual.titulo}
-          subheader={postagemAtual.autor}
-        />
+      <CardHeader
+        avatar={
+          <Avatar aria-label="Recipe" className={classes.avatar}>
+            {this.props.postagemAtual.autor.charAt(0)}
+          </Avatar>
+        }
+        action={
+          <IconButton className={classes.botao}>
+            <MoreVertIcon />
+          </IconButton>
+        }
+        classes={{
+          title: classes.estiloTexto,
+          subheader: classes.estiloSubTitulo,
+        }}
+        title={postagemAtual.titulo}
+        subheader={postagemAtual.autor}
+      />
     );
   }
 }
 
-ConteudoHeader.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
 const mapStateToProps = store => {
-  const posts = store.posts;
+  const postagemAtual = store.posts.postagemAtual;
   return {
-    ...posts
+    postagemAtual
   };
 };
 

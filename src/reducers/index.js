@@ -18,6 +18,13 @@ export const initialStatePosts = {
       conteudo: require(`../assets/ogrito.jpg`)
     },
     {
+      titulo: 'Quem te viu, quem te vê',
+      autor: 'Chico Buarque',
+      tipoMidia: 'Audio',
+      resumo: 'Um dia eu vi uma garota para nunca mais, criei essa música.',
+      conteudo: require(`../assets/ogrito.jpg`)
+    },
+    {
       titulo: 'Ninguém é igual a ninguém',
       autor: 'HG',
       tipoMidia: 'Texto',
