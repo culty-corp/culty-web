@@ -1,0 +1,73 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import CardHeader from '@material-ui/core/CardHeader';
+import Avatar from '@material-ui/core/Avatar';
+import IconButton from '@material-ui/core/IconButton';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+
+
+const styles = theme => ({
+  estiloTexto: {
+    color: '#ECF2EC'
+  },
+  estiloSubTitulo: {
+    color: '#FFDEB5'
+  },
+  avatar: {
+    backgroundColor: '#FF8C00',
+  },
+  botao: {
+    color: '#ff9703',
+  },
+});
+
+class ConteudoHeader extends React.Component {
+  state = { expanded: false };
+
+  handleExpandClick = () => {
+    this.setState(state => ({ expanded: !state.expanded }));
+  };
+
+  render() {
+    const { classes, postagemAtual } = this.props;
+
+    return (
+        <CardHeader
+          avatar={
+            <Avatar aria-label="Recipe" className={classes.avatar}>
+              { this.props.postagemAtual.autor.charAt(0) }
+            </Avatar>
+          }
+          action={
+            <IconButton className={classes.botao}>
+              <MoreVertIcon />
+            </IconButton>
+          }
+          classes={{
+            title: classes.estiloTexto,
+            subheader: classes.estiloSubTitulo,
+          }}
+          title={postagemAtual.titulo}
+          subheader={postagemAtual.autor}
+        />
+    );
+  }
+}
+
+ConteudoHeader.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = store => {
+  const posts = store.posts;
+  return {
+    ...posts
+  };
+};
+
+export default withRouter(
+  connect(mapStateToProps)(withStyles(styles)(ConteudoHeader))
+);

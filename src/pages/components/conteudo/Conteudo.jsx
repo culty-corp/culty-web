@@ -2,16 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+
+import Collapse from '@material-ui/core/Collapse';
+
+import * as Map from '../../../Maps';
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+
+import ConteudoHeader from './ConteudoHeader'
+import ConteudoActions from './ConteudoActions'
+
 
 const styles = theme => ({
   card: {
@@ -21,65 +24,57 @@ const styles = theme => ({
   estiloTexto: {
     color: '#ECF2EC'
   },
+  estiloSubTitulo: {
+    color: '#FFDEB5'
+  },
   media: {
     height: 0,
     paddingTop: '56.25%', // 16:9
   },
-  actions: {
-    display: 'flex',
-  },
-  avatar: {
-    backgroundColor: '#FF8C00',
-  },
   botao: {
-    color: '#FF8C00',
+    color: '#ff9703',
   },
 });
 
 class Conteudo extends React.Component {
   state = { expanded: false };
 
+  expandirPostagem = () => {
+    this.setState(state => ({ expanded: !state.expanded }));
+  };
+
   render() {
-    const { classes } = this.props;
+    const { classes, postagemAtual } = this.props;
 
     return (
       <Card className={classes.card}>
-        <CardHeader
-          avatar={
-            <Avatar aria-label="Recipe" className={classes.avatar}>
-              E
-            </Avatar>
-          }
-          action={
-            <IconButton>
-              <MoreVertIcon />
-            </IconButton>
-          }
-          classes={{
-            title: classes.estiloTexto,
-            subheader: classes.estiloTexto,
-          }}
-          title="O Grito"
-          subheader=" Edvard Munch"
-        />
-        <CardMedia
-          className= { classes.media }
-          image= { require('../../../assets/ogrito.jpg') }
-          title="O Grito"
-        />
+        <ConteudoHeader />
+
+        {
+          postagemAtual.tipoMidia !== "Texto" &&
+          <CardMedia
+            className={classes.media}
+            image={postagemAtual.conteudo}
+            title={postagemAtual.titulo}
+          />
+        }
+        
         <CardContent>
-          <Typography component="p"  className={ classes.estiloTexto }>
-            Minha obra clássica, o grito, representando o universitário em final de semestre.
+          <Typography component="p" className={classes.estiloTexto}>
+            {postagemAtual.resumo}
           </Typography>
         </CardContent>
-        <CardActions className={classes.actions} disableActionSpacing>
-          <IconButton aria-label="Add to favorites" className={ classes.botao }>
-            <FavoriteIcon />
-          </IconButton>
-          <IconButton aria-label="Share" className={ classes.botao }>
-            <ShareIcon />
-          </IconButton>
-        </CardActions>
+        <ConteudoActions expanded={this.state.expanded} expandirPostagem={() => this.expandirPostagem()} />
+        <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
+          <CardContent>
+            {
+              postagemAtual.tipoMidia === "Texto" &&
+              <Typography paragraph className={classes.estiloTexto}>
+                {postagemAtual.conteudo}
+              </Typography>
+            }
+          </CardContent>
+        </Collapse>
       </Card>
     );
   }
@@ -89,4 +84,13 @@ Conteudo.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Conteudo);
+const mapStateToProps = store => {
+  const posts = store.posts;
+  return {
+    ...posts
+  };
+};
+
+export default withRouter(
+  connect(mapStateToProps, Map.mapDispatchToProps)(withStyles(styles)(Conteudo))
+);
