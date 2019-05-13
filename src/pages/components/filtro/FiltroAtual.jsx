@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 import Paper from '@material-ui/core/Paper';
-import TagFacesIcon from '@material-ui/icons/TagFaces';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import * as Map from '../../../Maps'
@@ -26,7 +25,7 @@ const styles = theme => ({
         color: '#ECF2EC',
         width: '100%',
         padding: '5%'
-      }
+    }
 });
 
 class FiltroAtual extends React.Component {
@@ -44,23 +43,14 @@ class FiltroAtual extends React.Component {
                 <Typography variant="h5" component="h3" className={classes.estiloTexto}>
                     Filtros adicionados
         </Typography>
-                {filtros.map((data, i) => {
-                    let icon = null;
-
-                    if (data === 'React') {
-                        icon = <TagFacesIcon />;
-                    }
-
-                    return (
-                        <Chip
-                            key={i}
-                            icon={icon}
-                            label={data}
-                            onDelete={this.tireFiltro(data)}
-                            className={classes.chip}
-                        />
-                    );
-                })}
+                {filtros.map((data, i) => 
+                    <Chip
+                        key={i}
+                        label={data}
+                        onDelete={this.tireFiltro(data)}
+                        className={classes.chip}
+                    />
+                )}
             </Paper>
         );
     }

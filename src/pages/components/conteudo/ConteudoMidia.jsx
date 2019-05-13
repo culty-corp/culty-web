@@ -4,13 +4,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { withStyles } from '@material-ui/core/styles';
 import ConteudoPlayer from './ConteudoPlayer'
-
-const styles = theme => ({
-    media: {
-        height: 0,
-        paddingTop: '56.25%', // 16:9
-    }
-});
+import styles from './style.js'
 
 const ConteudoMidia = (props) => {
     const { classes, postagemAtual } = props;

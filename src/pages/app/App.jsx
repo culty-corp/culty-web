@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
-import './App.css';
 import Conteudo from '../components/conteudo/Conteudo';
 import * as Map from '../../Maps';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import Filtro from '../components/filtro/Filtro'
+import { withStyles } from '@material-ui/core/styles';
+import styles from './style.js'
+import PropTypes from 'prop-types';
 
 class App extends Component {
-
   render() {
+    const { classes } = this.props;
     return (
-      <div className="culty-wraper">
-        <div className="culty-header">
-          <div className="wraperFiltro">
+      <div className={classes.cultyWraper}>
+        <div className={classes.cultyHeader}>
+          <div className={classes.wraperFiltro}>
             <Filtro />
           </div>
           <Conteudo />
@@ -29,6 +31,10 @@ const mapStateToProps = store => {
   };
 };
 
+App.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
 export default withRouter(
-  connect(mapStateToProps, Map.mapDispatchToProps)(App)
+  connect(mapStateToProps, Map.mapDispatchToProps)(withStyles(styles)(App))
 );

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 import Paper from '@material-ui/core/Paper';
-import TagFacesIcon from '@material-ui/icons/TagFaces';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import * as Map from '../../../Maps'
@@ -57,23 +56,14 @@ class AddFiltro extends React.Component {
           <Typography variant="h5" component="h3" className={classes.estiloTexto}>
             Adicione um novo Filtro
         </Typography>
-          {this.state.chipData.map(data => {
-            let icon = null;
-
-            if (data.label === 'React') {
-              icon = <TagFacesIcon />;
-            }
-
-            return (
+          {this.state.chipData.map(data => 
               <Chip
                 key={data.key}
-                icon={icon}
                 label={data.label}
                 onClick={this.addFiltro(data)}
                 className={classes.chip}
               />
-            );
-          })}
+          )}
         </Paper>
       </div>
     );

@@ -10,17 +10,7 @@ import { withRouter } from "react-router-dom";
 import ConteudoHeader from './ConteudoHeader'
 import ConteudoActions from './ConteudoActions'
 import ConteudoMidia from './ConteudoMidia'
-
-
-const styles = theme => ({
-  card: {
-    maxWidth: 400,
-    backgroundColor: '#1e1e1e',
-  },
-  estiloTexto: {
-    color: '#ECF2EC'
-  }
-});
+import styles from './style.js'
 
 class Conteudo extends React.Component {
   state = { expanded: false };

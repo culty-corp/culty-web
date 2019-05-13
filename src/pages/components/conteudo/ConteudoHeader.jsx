@@ -6,22 +6,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-
-
-const styles = theme => ({
-  estiloTexto: {
-    color: '#ECF2EC'
-  },
-  estiloSubTitulo: {
-    color: '#FFDEB5'
-  },
-  avatar: {
-    backgroundColor: '#FF8C00',
-  },
-  botao: {
-    color: '#ff9703',
-  },
-});
+import styles from './style.js'
 
 const ConteudoHeader = (props) => {
   const { classes, postagemAtual } = props;

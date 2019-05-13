@@ -5,38 +5,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import IconButton from '@material-ui/core/IconButton';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-
-
-const styles = theme => ({
-    card: {
-        display: 'flex',
-    },
-    details: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    content: {
-        flex: '1 0 auto',
-    },
-    cover: {
-        width: 151,
-    },
-    controls: {
-        display: 'flex',
-        alignItems: 'center',
-        paddingLeft: theme.spacing.unit,
-        paddingBottom: theme.spacing.unit,
-    },
-    playIcon: {
-        height: 38,
-        width: 38,
-    },
-    botao: {
-        color: '#ff9703',
-    }
-});
+import styles from './style.js'
 
 const ConteudoPlayer = (props) => {
 

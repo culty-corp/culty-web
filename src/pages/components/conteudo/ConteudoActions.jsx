@@ -9,34 +9,7 @@ import { withRouter } from "react-router-dom";
 import IconButton from '@material-ui/core/IconButton';
 import classnames from 'classnames';
 import * as Map from '../../../Maps';
-
-
-const styles = theme => ({
-    botao: {
-        color: '#ff9703',
-    },
-    botaoShare: {
-        color: '#ff9703',
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginLeft: '32%',
-    },
-    actions: {
-        display: 'flex',
-        flexDirection: 'row'
-    },
-    expand: {
-        transform: 'rotate(0deg)',
-        marginLeft: 'auto',
-        color: '#FF8C00',
-        transition: theme.transitions.create('transform', {
-            duration: theme.transitions.duration.shortest,
-        }),
-    },
-    expandOpen: {
-        transform: 'rotate(180deg)',
-    },
-});
+import styles from './style.js'
 
 const ConteudoActions = (props) => {
     const { classes, postagemAtual } = props;
