@@ -4,6 +4,7 @@ import Conteudo from '../components/conteudo/Conteudo';
 import * as Map from '../../Maps';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import Filtro from '../components/filtro/Filtro'
 
 class App extends Component {
 
@@ -11,6 +12,9 @@ class App extends Component {
     return (
       <div className="culty-wraper">
         <div className="culty-header">
+          <div className="wraperFiltro">
+            <Filtro />
+          </div>
           <Conteudo />
         </div>
       </div>

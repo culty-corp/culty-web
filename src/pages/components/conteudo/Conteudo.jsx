@@ -5,7 +5,6 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Collapse from '@material-ui/core/Collapse';
-import * as Map from '../../../Maps';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import ConteudoHeader from './ConteudoHeader'
@@ -60,7 +59,6 @@ class Conteudo extends React.Component {
 
 Conteudo.propTypes = {
   classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = store => {
@@ -71,5 +69,5 @@ const mapStateToProps = store => {
 };
 
 export default withRouter(
-  connect(mapStateToProps, Map.mapDispatchToProps)(withStyles(styles)(Conteudo))
+  connect(mapStateToProps)(withStyles(styles)(Conteudo))
 );

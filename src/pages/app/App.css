@@ -19,6 +19,11 @@
   color: white;
 }
 
+.wraperFiltro {
+  padding: 10px;
+  width: 25%;
+}
+
 .App-link {
   color: #61dafb;
 }

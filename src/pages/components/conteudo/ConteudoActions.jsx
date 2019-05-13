@@ -38,35 +38,32 @@ const styles = theme => ({
     },
 });
 
-class ConteudoActions extends React.Component {
+const ConteudoActions = (props) => {
+    const { classes, postagemAtual } = props;
 
-    render() {
-        const { classes, postagemAtual } = this.props;
-
-        return (
-            <CardActions className={classes.actions} disableActionSpacing>
-                <IconButton aria-label="Cultyr" className={classes.botao} onClick={() => this.props.passarPost()}>
-                    <LikeIcon />
+    return (
+        <CardActions className={classes.actions} disableActionSpacing>
+            <IconButton aria-label="Cultyr" className={classes.botao} onClick={() => props.passarPost()}>
+                <LikeIcon />
+            </IconButton>
+            <IconButton aria-label="Compartilhar" className={classes.botaoShare}>
+                <ShareIcon />
+            </IconButton>
+            {
+                postagemAtual.tipoMidia === "Texto" &&
+                <IconButton
+                    className={classnames(classes.expand, {
+                        [classes.expandOpen]: props.expanded,
+                    })}
+                    onClick={() => props.expandirPostagem()}
+                    aria-expanded={props.expanded}
+                    aria-label="Quero ler mais"
+                >
+                    <ExpandMoreIcon />
                 </IconButton>
-                <IconButton aria-label="Compartilhar" className={classes.botaoShare}>
-                    <ShareIcon />
-                </IconButton>
-                {
-                    postagemAtual.tipoMidia === "Texto" &&
-                    <IconButton
-                        className={classnames(classes.expand, {
-                            [classes.expandOpen]: this.props.expanded,
-                        })}
-                        onClick={() => this.props.expandirPostagem()}
-                        aria-expanded={this.props.expanded}
-                        aria-label="Quero ler mais"
-                    >
-                        <ExpandMoreIcon />
-                    </IconButton>
-                }
-            </CardActions>
-        );
-    }
+            }
+        </CardActions>
+    );
 }
 
 const mapStateToProps = store => {

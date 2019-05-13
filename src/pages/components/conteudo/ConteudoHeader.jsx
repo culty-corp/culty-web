@@ -23,37 +23,29 @@ const styles = theme => ({
   },
 });
 
-class ConteudoHeader extends React.Component {
-  state = { expanded: false };
+const ConteudoHeader = (props) => {
+  const { classes, postagemAtual } = props;
 
-  handleExpandClick = () => {
-    this.setState(state => ({ expanded: !state.expanded }));
-  };
-
-  render() {
-    const { classes, postagemAtual } = this.props;
-
-    return (
-      <CardHeader
-        avatar={
-          <Avatar aria-label="Recipe" className={classes.avatar}>
-            {this.props.postagemAtual.autor.charAt(0)}
-          </Avatar>
-        }
-        action={
-          <IconButton className={classes.botao}>
-            <MoreVertIcon />
-          </IconButton>
-        }
-        classes={{
-          title: classes.estiloTexto,
-          subheader: classes.estiloSubTitulo,
-        }}
-        title={postagemAtual.titulo}
-        subheader={postagemAtual.autor}
-      />
-    );
-  }
+  return (
+    <CardHeader
+      avatar={
+        <Avatar aria-label="Recipe" className={classes.avatar}>
+          {postagemAtual.autor.charAt(0)}
+        </Avatar>
+      }
+      action={
+        <IconButton className={classes.botao}>
+          <MoreVertIcon />
+        </IconButton>
+      }
+      classes={{
+        title: classes.estiloTexto,
+        subheader: classes.estiloSubTitulo,
+      }}
+      title={postagemAtual.titulo}
+      subheader={postagemAtual.autor}
+    />
+  );
 }
 
 const mapStateToProps = store => {
