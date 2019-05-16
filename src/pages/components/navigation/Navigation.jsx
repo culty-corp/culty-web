@@ -16,7 +16,7 @@ class App extends Component {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
-      <Drawer style={width: "100%"}/>
+      <Drawer/>
         <AppBar position="static" className={classes.appbar}>
           <Toolbar variant="dense">
             <IconButton
