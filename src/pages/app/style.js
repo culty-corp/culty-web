@@ -1,6 +1,6 @@
 
 export default theme => ({
-    cultyWraper: {
+    cultyWrapper: {
         textAlign: 'center'
     },
     cultyHeader: {
@@ -13,7 +13,7 @@ export default theme => ({
         fontSize: 'calc(10px + 2vmin)',
         color: 'white'
       },
-      wraperFiltro: {
+      wrapperFiltro: {
         padding: '10px',
         width: '25%'
       },

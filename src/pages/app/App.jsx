@@ -1,31 +1,32 @@
-import React, { Component } from 'react';
-import Conteudo from '../components/conteudo/Conteudo';
-import * as Map from '../../Maps';
+import React, { Component } from "react";
+import Conteudo from "../components/conteudo/Conteudo";
+import * as Map from "../../Maps";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import Filtro from '../components/filtro/Filtro'
-import { withStyles } from '@material-ui/core/styles';
-import styles from './style.js'
-import PropTypes from 'prop-types';
-import SignIn from '../components/signIn/SignIn';
+import Filtro from "../components/filtro/Filtro";
+import { withStyles } from "@material-ui/core/styles";
+import styles from "./style.js";
+import PropTypes from "prop-types";
+import SignIn from "../components/signIn/SignIn";
+import Navigation from "../components/navigation/Navigation";
 
 class App extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <div className={classes.cultyWraper}>
+      <div className={classes.cultyWrapper}>
+        <Navigation />
         <div className={classes.cultyHeader}>
-          <div className={classes.wraperFiltro}>
+          <div className={classes.wrapperFiltro}>
             <Filtro />
           </div>
-            <Conteudo />
+          <Conteudo />
           <div className={classes.SignIn}>
             <SignIn />
           </div>
         </div>
       </div>
-
-    )
+    );
   }
 }
 
@@ -37,7 +38,7 @@ const mapStateToProps = store => {
 };
 
 App.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 export default withRouter(

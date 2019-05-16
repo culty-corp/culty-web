@@ -9,7 +9,7 @@ import FiltroAtual from './FiltroAtual'
 
 const styles = theme => ({
     wrapAddFiltro: {
-        paddingButtom: '5%'
+        paddingBottom: '5%'
     },
 });
 
