@@ -7,6 +7,7 @@ import Filtro from '../components/filtro/Filtro'
 import { withStyles } from '@material-ui/core/styles';
 import styles from './style.js'
 import PropTypes from 'prop-types';
+import SignIn from '../components/signIn/SignIn';
 
 class App extends Component {
   render() {
@@ -17,9 +18,13 @@ class App extends Component {
           <div className={classes.wraperFiltro}>
             <Filtro />
           </div>
-          <Conteudo />
+            <Conteudo />
+          <div className={classes.SignIn}>
+            <SignIn />
+          </div>
         </div>
       </div>
+
     )
   }
 }
