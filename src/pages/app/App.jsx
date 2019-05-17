@@ -9,6 +9,7 @@ import styles from "./style.js";
 import PropTypes from "prop-types";
 import SignIn from "../components/signIn/SignIn";
 import Navigation from "../components/navigation/Navigation";
+import CriarConteudo from '../components/novoConteudo/criarConteudo'
 
 class App extends Component {
   render() {
@@ -23,6 +24,7 @@ class App extends Component {
           <Conteudo />
           <div className={classes.SignIn}>
             <SignIn />
+            <CriarConteudo />
           </div>
         </div>
       </div>
