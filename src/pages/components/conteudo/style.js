@@ -5,7 +5,7 @@ export default theme => ({
     backgroundColor: '#1e1e1e',
   },
   estiloTexto: {
-    color: '#ECF2EC'
+    color: '#ECF2EC',
   },
   botao: {
     color: '#ff9703',
