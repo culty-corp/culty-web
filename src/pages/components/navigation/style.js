@@ -3,7 +3,8 @@ export default theme => ({
     flexGrow: 1
   },
   menuButton: {
-    marginLeft: -18,
+    position: "relative",
+    marginLeft: -22,
     marginRight: 10
   },
   logo: {
@@ -14,6 +15,17 @@ export default theme => ({
     margin: "0 auto"
   },
   appbar: {
-      backgroundColor: '#1e1e1e'
+    position: "absolute",
+    top: "0",
+    backgroundColor: "#1e1e1e"
+  },
+  list: {
+    width: "25%"
+  },
+  paper: {
+    background: "#1e1e1e"
+  },
+  primary: {
+    color: "#ECF2EC"
   }
 });
