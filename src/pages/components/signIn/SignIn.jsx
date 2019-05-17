@@ -15,6 +15,31 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import * as cores from '../../../utils/cores'
 
 const styles = theme => ({
+  root: {
+    color: "#fff",
+    "&$focused": {
+      color: "#fff"
+    },
+    "&$underline:after": {
+      borderBottom: "2px solid white"
+    },
+    "&$underline:before": {
+      borderBottom: "1px solid white"
+    },
+  },
+  focused: {
+    "&$focused": {
+      color: "#fff"
+    }
+  },
+  underline: {
+   "&$underline:after": {
+      borderBottom: "2px solid white"
+    },
+    "&$underline:before": {
+      borderBottom: "1px solid white"
+    },
+  },
   main: {
     width: 'auto',
     display: 'block', // Fix IE 11 issue.
@@ -41,9 +66,14 @@ const styles = theme => ({
   form: {
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing.unit,
+    color: '#ECF2EC',
   },
   submit: {
     marginTop: theme.spacing.unit * 3,
+    backgroundColor: cores.laranja,
+  },
+  estiloTexto: {
+    color: '#ECF2EC',
   },
 });
 
@@ -57,21 +87,21 @@ function SignIn(props) {
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5">
+        <Typography component="h1" variant="h5" className={classes.estiloTexto}>
           Entrar
         </Typography>
         <form className={classes.form}>
           <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="email">E-mail</InputLabel>
-            <Input id="email" name="email" autoComplete="email" autoFocus />
+            <InputLabel htmlFor="email" classes={{root: classes.root,focused: classes.focused}}>E-mail</InputLabel>
+            <Input id="email" name="email" autoComplete="email" autoFocus classes={{root: classes.root,focused: classes.focused, underline: classes.underline}} />
           </FormControl>
           <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="password">Senha</InputLabel>
-            <Input name="password" type="password" id="password" autoComplete="current-password" />
+            <InputLabel htmlFor="password"  classes={{root: classes.root,focused: classes.focused}}>Senha</InputLabel>
+            <Input name="password" type="password" id="password" autoComplete="current-password" classes={{root: classes.root,focused: classes.focused, underline: classes.underline}} />
           </FormControl>
           <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
+            control={<Checkbox value="remember" color='primary' />}
+            label="Lembrar?"
           />
           <Button
             type="submit"
