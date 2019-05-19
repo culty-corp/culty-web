@@ -13,6 +13,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import * as cores from '../../../utils/cores'
+import Link from '@material-ui/core/Link';
 
 const styles = theme => ({
   root: {
@@ -33,7 +34,7 @@ const styles = theme => ({
     }
   },
   underline: {
-   "&$underline:after": {
+    "&$underline:after": {
       borderBottom: "2px solid white"
     },
     "&$underline:before": {
@@ -92,18 +93,26 @@ function SignIn(props) {
         </Typography>
         <form className={classes.form}>
           <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="email" classes={{root: classes.root,focused: classes.focused}}>E-mail</InputLabel>
-            <Input id="email" name="email" autoComplete="email" autoFocus classes={{root: classes.root,focused: classes.focused, underline: classes.underline}} />
+            <InputLabel htmlFor="email" classes={{ root: classes.root, focused: classes.focused }}>E-mail</InputLabel>
+            <Input id="email" name="email" autoComplete="email" autoFocus classes={{ root: classes.root, focused: classes.focused, underline: classes.underline }} />
           </FormControl>
           <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="password"  classes={{root: classes.root,focused: classes.focused}}>Senha</InputLabel>
-            <Input name="password" type="password" id="password" autoComplete="current-password" classes={{root: classes.root,focused: classes.focused, underline: classes.underline}} />
+            <InputLabel htmlFor="password" classes={{ root: classes.root, focused: classes.focused }}>Senha</InputLabel>
+            <Input name="password" type="password" id="password" autoComplete="current-password" classes={{ root: classes.root, focused: classes.focused, underline: classes.underline }} />
           </FormControl>
           <FormControlLabel
             control={<Checkbox value="remember" color='primary' />}
             label="Lembrar?"
-            classes={{root: classes.root}}
+            classes={{ root: classes.root }}
           />
+          <FormControl margin="normal" required fullWidth>
+            <Link
+              component="button"
+              variant="body2"
+              onClick={() => {}} >
+              Registrar-se
+            </Link>
+          </FormControl>
           <Button
             type="submit"
             fullWidth
