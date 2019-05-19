@@ -21,36 +21,6 @@ class Registro extends Component {
 
     state = { tipoConteudo: 'texto', files: [] };
 
-    adicioneArquivos = (files) => {
-        this.setState({
-          files: files
-        });
-      }
-
-    adicionePost = (event) => {
-        event.preventDefault();
-        const formulario = event.target;
-        const titulo = formulario.titulo.value;
-        const resumo = formulario.resumo.value;
-        const tipoConteudo = formulario.tipoConteudo.value;
-        const conteudo = tipoConteudo === 'texto' ? formulario.conteudo.value : this.state.files[0];
-
-        const post = {
-            usuario: {},
-            titulo,
-            autor: 'Saulo Calixto',
-            tipoMidia: tipoConteudo === 'texto' ? 'Texto' : 'Imagem',
-            resumo,
-            conteudo: conteudo,
-            categorias: [
-              "música",
-              "mpb"
-            ]
-          };
-
-          this.props.adicionarPost(post);
-    }
-
     render() {
         const { classes } = this.props;
 
@@ -61,7 +31,11 @@ class Registro extends Component {
                     <Typography component="h1" variant="h5" className={classes.estiloTexto}>
                         Registrar
                     </Typography>
-                    <form className={classes.form} onSubmit={this.adicionePost}>
+                    <form className={classes.form}>
+                    <FormControl margin="normal" required fullWidth>
+                            <InputLabel htmlFor="nomeUsuario" classes={{ root: classes.root, focused: classes.focused }}>Nome de Usuário</InputLabel>
+                            <Input id="nomeUsuario" inputProps={{ maxLength: 40 }} name="nomeUsuario" autoComplete="nomeUsuario" autoFocus classes={{ root: classes.root, focused: classes.focused, underline: classes.underline }} />
+                        </FormControl>
                         <FormControl margin="normal" required fullWidth>
                             <InputLabel htmlFor="email" classes={{ root: classes.root, focused: classes.focused }}>E-mail</InputLabel>
                             <Input id="email" inputProps={{ maxLength: 40 }} name="email" autoComplete="email" autoFocus classes={{ root: classes.root, focused: classes.focused, underline: classes.underline }} />
