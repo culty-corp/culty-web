@@ -16,15 +16,23 @@ class App extends Component {
     const { classes } = this.props;
     return (
       <div className={classes.cultyWrapper}>
-        <Navigation />
-        <div className={classes.cultyHeader}>
-          <div className={classes.wrapperFiltro}>
-            <Filtro />
-          </div>
-          <Conteudo />
-          <div className={classes.SignIn}>
-            <SignIn />
-            <CriarConteudo />
+        <div className={classes.container}>
+          <div className={classes.cultyHeader}>
+            <div className={classes.wrapNavigation}>
+              <Navigation />
+            </div>
+            <div className={classes.wrapNada}>
+            </div>
+            <div className={classes.wrapperFiltro}>
+              <Filtro />
+            </div>
+            <div className={classes.wrapperConteudo}>
+              <Conteudo />
+            </div>
+            {/* <div className={classes.SignIn}>
+              <SignIn />
+              <CriarConteudo />
+            </div> */}
           </div>
         </div>
       </div>

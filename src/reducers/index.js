@@ -125,6 +125,11 @@ const posts = (state = initialStatePosts, action) => {
       return {
         ...state
       };
+    case "ADICIONAR_POST":
+        state.postagens = [...state.postagens, action.post];
+        return {
+          ...state
+        };
     default:
       return state;
   }

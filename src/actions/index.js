@@ -4,6 +4,13 @@ export const passarPost = () => {
     }
 }
 
+export const adicionarPost = (post) => {
+    return {
+        type: "ADICIONAR_POST",
+        post
+    }
+}
+
 export const addFiltro = (filtro) => {
     return {
         type: "ADD_FILTRO",

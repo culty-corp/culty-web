@@ -1,8 +1,10 @@
 
 export default theme => ({
   card: {
-    maxWidth: 400,
+    maxWidth: 900,
     backgroundColor: '#1e1e1e',
+    width: '100%',
+    minHeight: '40vh',
   },
   estiloTexto: {
     color: '#ECF2EC',
@@ -17,8 +19,7 @@ export default theme => ({
     marginLeft: '32%',
   },
   actions: {
-    display: 'flex',
-    flexDirection: 'row'
+    alignSelf : "flex-end"
   },
   expand: {
     transform: 'rotate(0deg)',

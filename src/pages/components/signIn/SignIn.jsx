@@ -102,7 +102,7 @@ function SignIn(props) {
           <FormControlLabel
             control={<Checkbox value="remember" color='primary' />}
             label="Lembrar?"
-            classes={{root: classes.root,focused: classes.focused, underline: classes.underline}}
+            classes={{root: classes.root}}
           />
           <Button
             type="submit"
