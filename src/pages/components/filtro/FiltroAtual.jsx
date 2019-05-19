@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 import Paper from '@material-ui/core/Paper';
@@ -7,26 +6,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import * as Map from '../../../Maps'
 import Typography from '@material-ui/core/Typography';
-
-const styles = theme => ({
-    root: {
-        display: 'flex',
-        justifyContent: 'center',
-        flexWrap: 'wrap',
-        padding: theme.spacing.unit / 2,
-        backgroundColor: '#1e1e1e',
-    },
-    chip: {
-        margin: theme.spacing.unit / 2,
-        backgroundColor: '#FF8C00',
-        color: '#ECF2EC'
-    },
-    estiloTexto: {
-        color: '#ECF2EC',
-        width: '100%',
-        padding: '5%'
-    }
-});
+import styles from './style.js'
 
 class FiltroAtual extends React.Component {
 
@@ -39,11 +19,10 @@ class FiltroAtual extends React.Component {
 
         return (
             <Paper className={classes.root}>
-
                 <Typography variant="h5" component="h3" className={classes.estiloTexto}>
                     Filtros adicionados
-        </Typography>
-                {filtros.map((data, i) => 
+                </Typography>
+                {filtros.map((data, i) =>
                     <Chip
                         key={i}
                         label={data}
@@ -55,10 +34,6 @@ class FiltroAtual extends React.Component {
         );
     }
 }
-
-FiltroAtual.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
 
 const mapStateToProps = store => {
     const filtros = store.filtros;

@@ -1,17 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import AddFiltro from './AddFiltro'
 import FiltroAtual from './FiltroAtual'
-
-
-const styles = theme => ({
-    wrapAddFiltro: {
-        paddingBottom: '5%'
-    },
-});
+import styles from './style.js'
 
 const Filtro = (props) => {
 
@@ -27,10 +20,6 @@ const Filtro = (props) => {
         </div>
     );
 }
-
-Filtro.propTypes = {
-    theme: PropTypes.object.isRequired,
-};
 
 const mapStateToProps = store => {
     const postagemAtual = store.posts.postagemAtual;
