@@ -19,11 +19,16 @@ const styles = theme => ({
     backgroundColor: 'rgba(0, 0, 0, 0.15)',
     padding: '8px 16px 8px 16px',
     marginTop: '8px',
+    textAlign: 'center',
   },
   footerText: {
     color: '#ECF2EC',
     fontSize: '14px',
     lineHeight: 1.5,
+  },
+  textLink: {
+    color: '#ECF2EC',
+    fontSize: '14px',
   },
 })
 
@@ -42,26 +47,23 @@ class Footer extends React.Component {
         <Grid container spacing={0}>
           <Grid item xs={12} sm={4}>
             <Typography className={[classes.footerText, classes.footerSections]}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at tempus mi. 
-              Etiam hendrerit mollis ante et faucibus. Duis porttitor enim vel varius posuere. 
-              Pellentesque viverra elit ac finibus blandit. Proin nec elit quis est lacinia 
-              ultricies sit amet quis lorem. Donec eu volutpat neque, vel consectetur ligula. 
+              O Culty é uma rede social para artistas independentes e amantes de arte. 
+              Artistas compartilham seu último trabalho artístico cultural e têm visibilidade 
+              sem depender de quantidade de seguidores. Apreciadores exploram, 
+              livremente, todos os tipos de arte, podendo filtrar por seus interesses!
             </Typography>
           </Grid>
           <Grid item xs={12} sm={4}>
             <Typography className={[classes.footerText, classes.footerSections]}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at tempus mi. 
-              Etiam hendrerit mollis ante et faucibus. Duis porttitor enim vel varius posuere. 
-              Pellentesque viverra elit ac finibus blandit. Proin nec elit quis est lacinia 
-              ultricies sit amet quis lorem. Donec eu volutpat neque, vel consectetur ligula. 
+              Contato para dúvidas e sugestões:
+              <p>contato@culty.com</p>
             </Typography>
           </Grid>
           <Grid item xs={12} sm={4}>
             <Typography className={[classes.footerText, classes.footerSections]}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at tempus mi. 
-              Etiam hendrerit mollis ante et faucibus. Duis porttitor enim vel varius posuere. 
-              Pellentesque viverra elit ac finibus blandit. Proin nec elit quis est lacinia 
-              ultricies sit amet quis lorem. Donec eu volutpat neque, vel consectetur ligula. 
+              <a href="#" target="_top" className={classes.textLink}>Sobre o Culty</a>
+              <p><a href="#" target="_top" className={classes.textLink}>Política do Site</a></p>
+              <p><a href="#" target="_top" className={classes.textLink}>Política de Privacidade</a></p>
             </Typography>
           </Grid>
           <Grid className={classes.subFooter} item xs={12}>
