@@ -9,6 +9,7 @@ import styles from "./style.js";
 import PropTypes from "prop-types";
 import SignIn from "../components/signIn/SignIn";
 import Navigation from "../components/navigation/Navigation";
+import Footer from '../components/footer/Footer';
 import CriarConteudo from '../components/novoConteudo/criarConteudo'
 
 class App extends Component {
@@ -34,6 +35,9 @@ class App extends Component {
               <CriarConteudo />
             </div> */}
           </div>
+        </div>
+        <div className={classes.Footer}>
+          <Footer />
         </div>
       </div>
     );
