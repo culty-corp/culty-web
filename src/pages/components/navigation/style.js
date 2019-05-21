@@ -12,7 +12,8 @@ export default theme => ({
     zIndex: 1,
     left: 0,
     right: 0,
-    margin: "0 auto"
+    margin: "0 auto",
+    top: 4
   },
   appbar: {
     position: "absolute",

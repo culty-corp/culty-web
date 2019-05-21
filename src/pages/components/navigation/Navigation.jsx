@@ -90,7 +90,7 @@ class Navigation extends Component {
 
             <div className={classes.logo}>
               <Typography variant="h6" color="inherit">
-                Culty
+                <img src="/culty_logo.png" alt="Culty" />
               </Typography>
             </div>
           </Toolbar>
