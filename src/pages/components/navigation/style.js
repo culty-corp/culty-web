@@ -9,7 +9,7 @@ export default theme => ({
   },
   logo: {
     position: "absolute",
-    zIndex: 1,
+    zIndex: -10,
     left: 0,
     right: 0,
     margin: "0 auto",
