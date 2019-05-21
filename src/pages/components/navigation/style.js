@@ -15,7 +15,7 @@ export default theme => ({
     margin: "0 auto"
   },
   appbar: {
-    position: "absolute",
+    position: "fixed",
     top: "0",
     backgroundColor: "#1e1e1e"
   },

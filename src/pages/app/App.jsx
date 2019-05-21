@@ -9,36 +9,55 @@ import styles from "./style.js";
 import PropTypes from "prop-types";
 import SignIn from "../components/signIn/SignIn";
 import Navigation from "../components/navigation/Navigation";
-import Footer from '../components/footer/Footer';
-import CriarConteudo from '../components/novoConteudo/criarConteudo'
+import Footer from "../components/footer/Footer";
+import CriarConteudo from "../components/novoConteudo/criarConteudo";
+import MediaQuery from "react-responsive";
 
 class App extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <div className={classes.cultyWrapper}>
-        <div className={classes.container}>
-          <div className={classes.cultyHeader}>
-            <div className={classes.wrapNavigation}>
-              <Navigation />
-            </div>
-            <div className={classes.wrapNada}>
-            </div>
-            <div className={classes.wrapperFiltro}>
-              <Filtro />
-            </div>
-            <div className={classes.wrapperConteudo}>
-              <Conteudo />
-            </div>
-            {/* <div className={classes.SignIn}>
+      <div>
+        <MediaQuery query="(min-device-width: 768px)">
+          <div>
+            <div className={classes.cultyHeader}>
+              <div className={classes.wrapNavigation}>
+                <Navigation />
+              </div>
+              <div className={classes.wrapperFiltro}>
+                <Filtro />
+              </div>
+              <div className={classes.wrapperConteudo}>
+                <Conteudo />
+              </div>
+              {/* <div>
               <SignIn />
               <CriarConteudo />
             </div> */}
+            </div>
           </div>
-        </div>
-        <div className={classes.Footer}>
-          <Footer />
-        </div>
+          <div>
+            <Footer />
+          </div>
+        </MediaQuery>
+        <MediaQuery query="(max-device-width: 768px)">
+          <div>
+            <div className={classes.cultyHeader}>
+              <div className={classes.wrapNavigation}>
+                <Navigation />
+              </div>
+              <div className={classes.wrapperFiltro}>
+                <Filtro />
+              </div>
+              <div className={classes.wrapperConteudo}>
+                <Conteudo />
+              </div>
+            </div>
+          </div>
+          <div>
+            <Footer />
+          </div>
+        </MediaQuery>
       </div>
     );
   }
