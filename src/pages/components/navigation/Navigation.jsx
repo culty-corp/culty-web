@@ -20,6 +20,12 @@ import MailIcon from "@material-ui/icons/Mail";
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
 
+import ExplorarIcon from "@material-ui/icons/Explore";
+import PostarIcon from "@material-ui/icons/Send";
+import SeguindoIcon from "@material-ui/icons/Favorite";
+import PerfilIcon from "@material-ui/icons/Person";
+import ArtistasIcon from "@material-ui/icons/SupervisedUserCircleRounded";
+
 class Navigation extends Component {
   state = {
     draw: false
@@ -37,31 +43,17 @@ class Navigation extends Component {
     const sideList = (
       <div className={classes.list}>
         <List>
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText
-                primary={text}
-                classes={{ primary: classes.primary }}
-              />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText
-                primary={text}
-                classes={{ primary: classes.primary }}
-              />
-            </ListItem>
-          ))}
+          {["Explorar", "Postar", "Seguindo", "Perfil", "Artistas"].map(
+            (text, index) => (
+              <ListItem button key={text}>
+                <ListItemIcon>{getPageIcon(text)}</ListItemIcon>
+                <ListItemText
+                  primary={text}
+                  classes={{ primary: classes.primary }}
+                />
+              </ListItem>
+            )
+          )}
         </List>
       </div>
     );
@@ -120,7 +112,25 @@ Navigation.propTypes = {
 };
 
 export default withRouter(
-  connect(mapStateToProps, Map.mapDispatchToProps)(
-    withStyles(styles)(Navigation)
-  )
+  connect(
+    mapStateToProps,
+    Map.mapDispatchToProps
+  )(withStyles(styles)(Navigation))
 );
+
+function getPageIcon(index) {
+  switch (index) {
+    case "Explorar":
+      return <ExplorarIcon />;
+    case "Postar":
+      return <PostarIcon />;
+    case "Seguindo":
+      return <SeguindoIcon />;
+    case "Perfil":
+      return <PerfilIcon />;
+    case "Artistas":
+      return <ArtistasIcon />;
+    default:
+      break;
+  }
+}
