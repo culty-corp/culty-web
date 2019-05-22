@@ -22,6 +22,7 @@ import PerfilIcon from "@material-ui/icons/Person";
 import ArtistasIcon from "@material-ui/icons/SupervisedUserCircleRounded";
 import EntrarIcon from "@material-ui/icons/LockOpen";
 import Filtro from "../filtro/Filtro";
+import { Divider } from "@material-ui/core";
 
 class Navigation extends Component {
   state = {
@@ -42,10 +43,27 @@ class Navigation extends Component {
         <List>
           {[
             { label: "Explorar", path: "/" },
-            { label: "Postar", path: "/novoConteudo" },
             { label: "Seguindo", path: "/" },
+            { label: "Artistas", path: "/" }
+          ].map((text, index) => (
+            <ListItem button key={text.label}>
+              <ListItemIcon color="#ff9703">
+                {getPageIcon(text.label)}
+              </ListItemIcon>
+              <ListItemText
+                primary={text.label}
+                classes={{ primary: classes.primary }}
+                key={index}
+                onClick={() => this.props.history.push(text.path)}
+              />
+            </ListItem>
+          ))}
+        </List>
+        <Divider />
+        <List>
+          {[
+            { label: "Postar", path: "/novoConteudo" },
             { label: "Perfil", path: "/perfil" },
-            { label: "Artistas", path: "/" },
             { label: "Entrar", path: "/entrar" }
           ].map((text, index) => (
             <ListItem button key={text.label}>
