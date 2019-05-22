@@ -5,7 +5,7 @@ export default theme => ({
   mediaLarge: {
     position: "absolute",
     zIndex: 0,
-    height: "33vh",
+    height: "40vh",
     width: "100%",
     opacity: "0.3"
   },
@@ -16,10 +16,16 @@ export default theme => ({
     width: "100%",
     opacity: "0.3"
   },
-  play: {
+  playLarge: {
     position: "absolute",
-    top: 60,
-    left: 110,
+    top: "13vh",
+    left: "15vw",
+    zIndex: 1
+  },
+  playSmall: {
+    position: "absolute",
+    top: "13vh",
+    left: "30vw",
     zIndex: 1
   },
   botao: {
