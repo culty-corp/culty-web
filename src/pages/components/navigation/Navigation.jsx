@@ -11,19 +11,7 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import List from "@material-ui/core/List";
-import ExplorarIcon from "@material-ui/icons/Explore";
-import PostarIcon from "@material-ui/icons/Send";
-import SeguindoIcon from "@material-ui/icons/Favorite";
-import PerfilIcon from "@material-ui/icons/Person";
-import ArtistasIcon from "@material-ui/icons/SupervisedUserCircleRounded";
-import EntrarIcon from "@material-ui/icons/ExitToApp";
-import SairIcon from "@material-ui/icons/Lock";
-import Filtro from "../filtro/Filtro";
-import { Divider } from "@material-ui/core";
+import NavigationOptions from "./NavigationOptions";
 
 class Navigation extends Component {
   state = {
@@ -39,65 +27,7 @@ class Navigation extends Component {
   render() {
     const { classes } = this.props;
 
-    const sideList = (
-      <div className={classes.list}>
-        <List>
-          {[
-            { label: "Explorar", path: "/" },
-            { label: "Seguindo", path: "/" },
-            { label: "Artistas", path: "/" }
-          ].map((text, index) => (
-            <ListItem button key={text.label}>
-              <ListItemIcon color="#ff9703">
-                {getPageIcon(text.label)}
-              </ListItemIcon>
-              <ListItemText
-                primary={text.label}
-                classes={{ primary: classes.primary }}
-                key={index}
-                onClick={() => this.props.history.push(text.path)}
-              />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {[{ label: "Entrar", path: "/novoConteudo" }].map((text, index) => (
-            <ListItem button key={text.label}>
-              <ListItemIcon color="#ff9703">
-                {getPageIcon(text.label)}
-              </ListItemIcon>
-              <ListItemText
-                primary={text.label}
-                classes={{ primary: classes.primary }}
-                key={index}
-                onClick={() => this.props.history.push(text.path)}
-              />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {[
-            { label: "Postar", path: "/novoConteudo" },
-            { label: "Perfil", path: "/perfil" },
-            { label: "Sair", path: "/entrar" }
-          ].map((text, index) => (
-            <ListItem button key={text.label}>
-              <ListItemIcon color="#ff9703">
-                {getPageIcon(text.label)}
-              </ListItemIcon>
-              <ListItemText
-                primary={text.label}
-                classes={{ primary: classes.primary }}
-                key={index}
-                onClick={() => this.props.history.push(text.path)}
-              />
-            </ListItem>
-          ))}
-        </List>
-      </div>
-    );
+    const sideList = <NavigationOptions logado={true} classes={this.props} />;
 
     return (
       <div className={classes.root}>
@@ -158,24 +88,3 @@ export default withRouter(
     Map.mapDispatchToProps
   )(withStyles(styles)(Navigation))
 );
-
-function getPageIcon(index) {
-  switch (index) {
-    case "Explorar":
-      return <ExplorarIcon />;
-    case "Postar":
-      return <PostarIcon />;
-    case "Seguindo":
-      return <SeguindoIcon />;
-    case "Perfil":
-      return <PerfilIcon />;
-    case "Artistas":
-      return <ArtistasIcon />;
-    case "Entrar":
-      return <EntrarIcon />;
-    case "Sair":
-      return <SairIcon />;
-    default:
-      break;
-  }
-}
