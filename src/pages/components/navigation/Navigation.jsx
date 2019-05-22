@@ -20,6 +20,7 @@ import PostarIcon from "@material-ui/icons/Send";
 import SeguindoIcon from "@material-ui/icons/Favorite";
 import PerfilIcon from "@material-ui/icons/Person";
 import ArtistasIcon from "@material-ui/icons/SupervisedUserCircleRounded";
+import EntrarIcon from "@material-ui/icons/LockOpen";
 import Filtro from "../filtro/Filtro";
 
 class Navigation extends Component {
@@ -39,19 +40,26 @@ class Navigation extends Component {
     const sideList = (
       <div className={classes.list}>
         <List>
-          {[{label: "Explorar", path: '/'}, { label: "Postar", path: '/novoConteudo' }, { label: "Seguindo", path: '/'}, { label: "Perfil", path: '/perfil' }, { label: "Artistas", path: '/' }, { label: "Entrar", path: '/entrar' }].map(
-            (text, index) => (
-              <ListItem button key={text.label}>
-                <ListItemIcon>{getPageIcon(text.label)}</ListItemIcon>
-                <ListItemText
-                  primary={text.label}
-                  classes={{ primary: classes.primary }}
-                  key={index}
-                  onClick={() => this.props.history.push(text.path) }
-                />
-              </ListItem>
-            )
-          )}
+          {[
+            { label: "Explorar", path: "/" },
+            { label: "Postar", path: "/novoConteudo" },
+            { label: "Seguindo", path: "/" },
+            { label: "Perfil", path: "/perfil" },
+            { label: "Artistas", path: "/" },
+            { label: "Entrar", path: "/entrar" }
+          ].map((text, index) => (
+            <ListItem button key={text.label}>
+              <ListItemIcon color="#ff9703">
+                {getPageIcon(text.label)}
+              </ListItemIcon>
+              <ListItemText
+                primary={text.label}
+                classes={{ primary: classes.primary }}
+                key={index}
+                onClick={() => this.props.history.push(text.path)}
+              />
+            </ListItem>
+          ))}
         </List>
       </div>
     );
@@ -128,6 +136,8 @@ function getPageIcon(index) {
       return <PerfilIcon />;
     case "Artistas":
       return <ArtistasIcon />;
+    case "Entrar":
+      return <EntrarIcon />;
     default:
       break;
   }
