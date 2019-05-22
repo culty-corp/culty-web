@@ -10,10 +10,10 @@ import { withRouter } from "react-router-dom";
 import ConteudoHeader from "./ConteudoHeader";
 import ConteudoActions from "./ConteudoActions";
 import ConteudoMidia from "./ConteudoMidia";
-import styles from "./style.js";
+import styles from "./conteudoCardStyle";
 import MediaQuery from "react-responsive";
 
-class Conteudo extends React.Component {
+class ConteudoCard extends React.Component {
   state = { expanded: false };
 
   expandirPostagem = () => {
@@ -42,7 +42,7 @@ class Conteudo extends React.Component {
               <CardContent>
                 {postagemAtual.tipoMidia === "Texto" && (
                   <Typography paragraph className={classes.estiloTexto}>
-                    {postagemAtual.conteudo}
+                    {postagemAtual.conteudoCard}
                   </Typography>
                 )}
               </CardContent>
@@ -66,7 +66,7 @@ class Conteudo extends React.Component {
               <CardContent>
                 {postagemAtual.tipoMidia === "Texto" && (
                   <Typography paragraph className={classes.estiloTexto}>
-                    {postagemAtual.conteudo}
+                    {postagemAtual.conteudoCard}
                   </Typography>
                 )}
               </CardContent>
@@ -78,7 +78,7 @@ class Conteudo extends React.Component {
   }
 }
 
-Conteudo.propTypes = {
+ConteudoCard.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
@@ -90,5 +90,5 @@ const mapStateToProps = store => {
 };
 
 export default withRouter(
-  connect(mapStateToProps)(withStyles(styles)(Conteudo))
+  connect(mapStateToProps)(withStyles(styles)(ConteudoCard))
 );

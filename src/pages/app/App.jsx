@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Conteudo from "../components/conteudo/Conteudo";
+import ConteudoCard from "../components/conteudo/ConteudoCard";
 import * as Map from "../../Maps";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
@@ -12,53 +12,62 @@ import Navigation from "../components/navigation/Navigation";
 import Footer from "../components/footer/Footer";
 import CriarConteudo from "../components/novoConteudo/criarConteudo";
 import MediaQuery from "react-responsive";
+import ConteudoActions from "../components/conteudo/ConteudoActions";
+import ConteudoHeader from "../components/conteudo/ConteudoHeader";
+import ConteudoMidia from "../components/conteudo/ConteudoMidia";
+import ConteudoPlayer from "../components/conteudo/ConteudoPlayer";
 
 class App extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <div>
-        <MediaQuery query="(min-device-width: 768px)">
-          <div>
-            <div className={classes.cultyHeader}>
-              <div className={classes.wrapNavigation}>
-                <Navigation />
-              </div>
-              <div className={classes.wrapperFiltro}>
-                <Filtro />
-              </div>
-              <div className={classes.wrapperConteudo}>
-                <Conteudo />
-              </div>
-              {/* <div>
-              <SignIn />
-              <CriarConteudo />
-            </div> */}
-            </div>
-          </div>
-          <div>
-            <Footer />
-          </div>
-        </MediaQuery>
-        <MediaQuery query="(max-device-width: 768px)">
-          <div>
-            <div className={classes.cultyHeader}>
-              <div className={classes.wrapNavigation}>
-                <Navigation />
-              </div>
-              <div className={classes.wrapperFiltro}>
-                <Filtro />
-              </div>
-              <div className={classes.wrapperConteudo}>
-                <Conteudo />
-              </div>
-            </div>
-          </div>
-          <div>
-            <Footer />
-          </div>
-        </MediaQuery>
-      </div>
+      // <div>
+      //   <MediaQuery query="(min-device-width: 768px)">
+      //     <div>
+      //       <div className={classes.cultyHeader}>
+      //         <div className={classes.wrapNavigation}>
+      //           <Navigation />
+      //         </div>
+      //         <div className={classes.wrapperFiltro}>
+      //           <Filtro />
+      //         </div>
+      //         <div className={classes.wrapperConteudo}>
+      //           <ConteudoCard />
+      //         </div>
+      //         {/* <div>
+      //         <SignIn />
+      //         <CriarConteudo />
+      //       </div> */}
+      //       </div>
+      //     </div>
+      //     <div>
+      //       <Footer />
+      //     </div>
+      //   </MediaQuery>
+      //   <MediaQuery query="(max-device-width: 768px)">
+      //     <div>
+      //       <div className={classes.cultyHeader}>
+      //         <div className={classes.wrapNavigation}>
+      //           <Navigation />
+      //         </div>
+      //         <div className={classes.wrapperFiltro}>
+      //           <Filtro />
+      //         </div>
+      //         <div className={classes.wrapperConteudo}>
+      //           <ConteudoCard />
+      //         </div>
+      //       </div>
+      //     </div>
+      //     <div>
+      //       <Footer />
+      //     </div>
+      //   </MediaQuery>
+      // </div>
+      <ConteudoCard />
+      //  <ConteudoActions />
+      //  <ConteudoHeader />
+      //<ConteudoMidia />
+      //<ConteudoPlayer />
     );
   }
 }
