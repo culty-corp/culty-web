@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Conteudo from "../components/conteudo/Conteudo";
 import * as Map from "../../Maps";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
@@ -7,39 +6,29 @@ import Filtro from "../components/filtro/Filtro";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "./style.js";
 import PropTypes from "prop-types";
-import SignIn from "../components/signIn/SignIn";
 import Navigation from "../components/navigation/Navigation";
-import Footer from '../components/footer/Footer';
-import CriarConteudo from '../components/novoConteudo/criarConteudo'
+import Grid from '@material-ui/core/Grid';
+import Rotas from './Rotas'
 
 class App extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <div className={classes.cultyWrapper}>
-        <div className={classes.container}>
           <div className={classes.cultyHeader}>
-            <div className={classes.wrapNavigation}>
-              <Navigation />
-            </div>
-            <div className={classes.wrapNada}>
-            </div>
-            <div className={classes.wrapperFiltro}>
-              <Filtro />
-            </div>
-            <div className={classes.wrapperConteudo}>
-              <Conteudo />
-            </div>
-            {/* <div className={classes.SignIn}>
-              <SignIn />
-              <CriarConteudo />
-            </div> */}
+            <Grid container spacing={24}>
+              <Grid item xs={12}>
+                <Navigation />
+              </Grid>
+              <Grid item xs={1}>
+              </Grid>
+              <Grid item xs={6}>
+                <Rotas />
+              </Grid>
+              <Grid item xs={2}>
+                <Filtro />
+              </Grid>
+            </Grid>
           </div>
-        </div>
-        <div className={classes.Footer}>
-          <Footer />
-        </div>
-      </div>
     );
   }
 }

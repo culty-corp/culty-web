@@ -7,11 +7,14 @@ export default theme => ({
       color: cores.corTexto,
     },
     "&$underline:after": {
-      borderBottom: "2px solid white"
+      borderBottom: "2px solid " + cores.corTexto
     },
     "&$underline:before": {
-      borderBottom: "1px solid white"
+      borderBottom: "1px solid " + cores.corTexto
     }
+  },
+  inputColor: {
+    color: cores.corTexto,
   },
   focused: {
     "&$focused": {
@@ -20,10 +23,10 @@ export default theme => ({
   },
   underline: {
    "&$underline:after": {
-      borderBottom: "2px solid white"
+      borderBottom: "2px solid " + cores.corTexto
     },
     "&$underline:before": {
-      borderBottom: "1px solid white"
+      borderBottom: "1px solid " + cores.corTexto
     },
   },
     main: {

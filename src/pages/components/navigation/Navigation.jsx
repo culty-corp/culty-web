@@ -9,22 +9,18 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
-import Drawer from "@material-ui/core/Drawer";
 import Button from "@material-ui/core/Button";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
 import List from "@material-ui/core/List";
-import Divider from "@material-ui/core/Divider";
-
 import ExplorarIcon from "@material-ui/icons/Explore";
 import PostarIcon from "@material-ui/icons/Send";
 import SeguindoIcon from "@material-ui/icons/Favorite";
 import PerfilIcon from "@material-ui/icons/Person";
 import ArtistasIcon from "@material-ui/icons/SupervisedUserCircleRounded";
+import Filtro from "../filtro/Filtro";
 
 class Navigation extends Component {
   state = {
@@ -43,13 +39,15 @@ class Navigation extends Component {
     const sideList = (
       <div className={classes.list}>
         <List>
-          {["Explorar", "Postar", "Seguindo", "Perfil", "Artistas"].map(
+          {[{label: "Explorar", path: '/'}, { label: "Postar", path: '/novoConteudo' }, { label: "Seguindo", path: '/'}, { label: "Perfil", path: '/perfil' }, { label: "Artistas", path: '/' }, { label: "Entrar", path: '/entrar' }].map(
             (text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{getPageIcon(text)}</ListItemIcon>
+              <ListItem button key={text.label}>
+                <ListItemIcon>{getPageIcon(text.label)}</ListItemIcon>
                 <ListItemText
-                  primary={text}
+                  primary={text.label}
                   classes={{ primary: classes.primary }}
+                  key={index}
+                  onClick={() => this.props.history.push(text.path) }
                 />
               </ListItem>
             )

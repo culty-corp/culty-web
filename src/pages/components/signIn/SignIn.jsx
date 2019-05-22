@@ -14,6 +14,7 @@ import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import * as cores from '../../../utils/cores'
 import Link from '@material-ui/core/Link';
+import { withRouter } from "react-router-dom";
 
 const styles = theme => ({
   root: {
@@ -78,7 +79,7 @@ const styles = theme => ({
   },
 });
 
-function SignIn(props) {
+const SignIn = (props) => {
   const { classes } = props;
 
   return (
@@ -109,7 +110,7 @@ function SignIn(props) {
             <Link
               component="button"
               variant="body2"
-              onClick={() => {}} >
+              onClick={() => props.history.push("/registro") } >
               Registrar-se
             </Link>
           </FormControl>
@@ -119,6 +120,7 @@ function SignIn(props) {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={() => props.history.push("/") }
           >
             Entrar
           </Button>
@@ -132,4 +134,4 @@ SignIn.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SignIn);
+export default withRouter((withStyles(styles)(SignIn)));

@@ -16,6 +16,7 @@ import styles from './style.js'
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import * as Map from '../../../Maps';
+import TextField from '@material-ui/core/TextField';
 
 class Registro extends Component {
 
@@ -44,12 +45,30 @@ class Registro extends Component {
                             <InputLabel htmlFor="senha" classes={{ root: classes.root, focused: classes.focused }}>Senha</InputLabel>
                             <Input type="password" inputProps={{ maxLength: 300 }} name="senha" id="senha" autoComplete="senha" classes={{ root: classes.root, focused: classes.focused, underline: classes.underline }} />
                         </FormControl>
+                        <FormControl margin="normal" required fullWidth>
+                            <TextField
+                                id="date"
+                                label="Data de nascimento"
+                                type="date"
+                                InputProps={{
+                                    classes: {
+                                        input: classes.root,
+                                        MuiInputLabel: classes.inputColor
+                                    }
+                                }}
+                                InputLabelProps={{
+                                    shrink: true,
+                                    className: classes.root 
+                                }}
+                            />
+                        </FormControl>
                         <Button
                             fullWidth
                             variant="contained"
                             color="primary"
                             className={classes.submit}
                             type="submit"
+                            onClick={() => this.props.history.push("/") }
                         >
                             Registrar-se
                         </Button>
