@@ -20,7 +20,8 @@ import PostarIcon from "@material-ui/icons/Send";
 import SeguindoIcon from "@material-ui/icons/Favorite";
 import PerfilIcon from "@material-ui/icons/Person";
 import ArtistasIcon from "@material-ui/icons/SupervisedUserCircleRounded";
-import EntrarIcon from "@material-ui/icons/LockOpen";
+import EntrarIcon from "@material-ui/icons/ExitToApp";
+import SairIcon from "@material-ui/icons/Lock";
 import Filtro from "../filtro/Filtro";
 import { Divider } from "@material-ui/core";
 
@@ -61,10 +62,26 @@ class Navigation extends Component {
         </List>
         <Divider />
         <List>
+          {[{ label: "Entrar", path: "/novoConteudo" }].map((text, index) => (
+            <ListItem button key={text.label}>
+              <ListItemIcon color="#ff9703">
+                {getPageIcon(text.label)}
+              </ListItemIcon>
+              <ListItemText
+                primary={text.label}
+                classes={{ primary: classes.primary }}
+                key={index}
+                onClick={() => this.props.history.push(text.path)}
+              />
+            </ListItem>
+          ))}
+        </List>
+        <Divider />
+        <List>
           {[
             { label: "Postar", path: "/novoConteudo" },
             { label: "Perfil", path: "/perfil" },
-            { label: "Entrar", path: "/entrar" }
+            { label: "Sair", path: "/entrar" }
           ].map((text, index) => (
             <ListItem button key={text.label}>
               <ListItemIcon color="#ff9703">
@@ -156,6 +173,8 @@ function getPageIcon(index) {
       return <ArtistasIcon />;
     case "Entrar":
       return <EntrarIcon />;
+    case "Sair":
+      return <SairIcon />;
     default:
       break;
   }
