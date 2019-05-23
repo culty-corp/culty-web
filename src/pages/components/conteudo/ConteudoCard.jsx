@@ -33,20 +33,18 @@ class ConteudoCard extends React.Component {
                 {postagemAtual.resumo}
               </Typography>
             </CardContent>
-            <ConteudoMidia />
-            <ConteudoActions
-              expanded={this.state.expanded}
-              expandirPostagem={() => this.expandirPostagem()}
-            />
-            <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
-              <CardContent>
+            <CardContent>
                 {postagemAtual.tipoMidia === "Texto" && (
                   <Typography paragraph className={classes.estiloTexto}>
                     {postagemAtual.conteudoCard}
                   </Typography>
                 )}
               </CardContent>
-            </Collapse>
+            <ConteudoMidia />
+            <ConteudoActions
+              expanded={this.state.expanded}
+              expandirPostagem={() => this.expandirPostagem()}
+            />
           </Card>
         </MediaQuery>
         <MediaQuery query="(max-device-width: 768px)">
@@ -57,20 +55,18 @@ class ConteudoCard extends React.Component {
                 {postagemAtual.resumo}
               </Typography>
             </CardContent>
-            <ConteudoMidia />
-            <ConteudoActions
-              expanded={this.state.expanded}
-              expandirPostagem={() => this.expandirPostagem()}
-            />
-            <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
-              <CardContent>
+            <CardContent>
                 {postagemAtual.tipoMidia === "Texto" && (
                   <Typography paragraph className={classes.estiloTexto}>
                     {postagemAtual.conteudoCard}
                   </Typography>
                 )}
               </CardContent>
-            </Collapse>
+            <ConteudoMidia />
+            <ConteudoActions
+              expanded={this.state.expanded}
+              expandirPostagem={() => this.expandirPostagem()}
+            />
           </Card>
         </MediaQuery>
       </div>

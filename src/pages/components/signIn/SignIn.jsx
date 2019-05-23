@@ -77,6 +77,10 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 3,
     backgroundColor: cores.laranja
   },
+  registro: {
+    marginTop: theme.spacing.unit * 3,
+    backgroundColor: '#d67d00'
+  },
   estiloTexto: {
     color: "#ECF2EC"
   }
@@ -149,20 +153,24 @@ class SignIn extends Component {
               classes={{ root: classes.root }}
             />
             <FormControl margin="normal" required fullWidth>
-              <Link
+              <Button
+              className={classes.registro}
                 component="button"
                 variant="body2"
+
                 onClick={() => this.props.history.push("/registro")}
               >
                 Registrar-se
-              </Link>
+              </Button>
             </FormControl>
             <Button
               fullWidth
+              type='submit'
               variant="contained"
               color="primary"
               className={classes.submit}
               onClick={() => this.logar()}
+              onKeyPress={() => this.logar()}
             >
               Entrar
             </Button>

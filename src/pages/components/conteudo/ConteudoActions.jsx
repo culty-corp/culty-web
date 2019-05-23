@@ -49,18 +49,6 @@ const ConteudoActions = props => {
             >
               <LikeIcon />
             </IconButton>
-            {postagemAtual.tipoMidia === "Texto" && (
-              <IconButton
-                className={classnames(classes.expand, {
-                  [classes.expandOpen]: props.expanded
-                })}
-                onClick={() => props.expandirPostagem()}
-                aria-expanded={props.expanded}
-                aria-label="Quero ler mais"
-              >
-                <ExpandMoreIcon />
-              </IconButton>
-            )}
           </Grid>
         </CardActions>
       </MediaQuery>
@@ -93,18 +81,6 @@ const ConteudoActions = props => {
             >
               <LikeIcon />
             </IconButton>
-            {postagemAtual.tipoMidia === "Texto" && (
-              <IconButton
-                className={classnames(classes.expandSmall, {
-                  [classes.expandOpenSmall]: props.expanded
-                })}
-                onClick={() => props.expandirPostagem()}
-                aria-expanded={props.expanded}
-                aria-label="Quero ler mais"
-              >
-                <ExpandMoreIcon />
-              </IconButton>
-            )}
           </Grid>
         </CardActions>
       </MediaQuery>

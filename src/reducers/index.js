@@ -79,24 +79,7 @@ export const initialStatePosts = {
       Mas uns mais iguais que os outros
       Todos iguais, todos iguais
       Mas uns mais iguais, mas uns mais iguais, mas uns mais iguais
-      Que os outros
-      
-      O que me encanta é que tanta gente
-      Sinta (se é que sente) ou
-      Minta (desesperadamente)
-      Da mesma forma
-      
-      Todos iguais, todos iguais
-      Mas uns mais iguais que os outros
-      Todos iguais, todos iguais
-      Mas uns mais iguais que os outros
-      Todos iguais, todos iguais
-      Todos iguais, todos iguais
-      
-      Tão desiguais, tão desiguais
-      Tão desiguais, tão desiguais
-      
-      Todos iguais, todos iguais`,
+      Que os outros`,
       categorias: ["música", "rock", "poesia"]
     }
   ]
@@ -147,7 +130,7 @@ const filtros = (state = initialStateFiltros, action) => {
 };
 
 export const initialStateUsuario = { 
-  logado: true,
+  logado: false,
 }
 
 const usuario = (state = initialStateUsuario, action) => {
