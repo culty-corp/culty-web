@@ -49,6 +49,7 @@ class CriarConteudo extends Component {
           };
 
           this.props.adicionarPost(post);
+          this.props.history.push("/");
     }
 
     render() {
