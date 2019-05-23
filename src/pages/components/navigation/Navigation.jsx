@@ -12,6 +12,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import NavigationOptions from "./NavigationOptions";
+import * as Map from "../../../Maps";
 
 class Navigation extends Component {
   state = {
@@ -27,7 +28,7 @@ class Navigation extends Component {
   render() {
     const { classes } = this.props;
 
-    const sideList = <NavigationOptions logado={true} classes={this.props} />;
+    const sideList = <NavigationOptions />;
 
     return (
       <div className={classes.root}>
@@ -55,7 +56,7 @@ class Navigation extends Component {
               onClick={this.toggleDrawer()}
             >
               <IconButton>
-                <MenuIcon />
+                <MenuIcon className={classes.icon} />
               </IconButton>
             </Button>
 
@@ -73,8 +74,10 @@ class Navigation extends Component {
 
 const mapStateToProps = store => {
   const posts = store.posts;
+  const usuario = store.usuario;
   return {
-    ...posts
+    ...posts,
+    ...usuario
   };
 };
 

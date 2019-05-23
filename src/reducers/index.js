@@ -156,7 +156,29 @@ const filtros = (state = initialStateFiltros, action) => {
   }
 }
 
+export const initialStateUsuario = { 
+  logado: true,
+}
+
+const usuario = (state = initialStateUsuario, action) => {
+  switch (action.type) {
+    case "LOGAR":
+        state.logado = true;
+      return {
+        ...state
+      };
+      case "DESLOGAR":
+        state.logado = false;
+      return {
+        ...state
+      };
+    default:
+      return state;
+  }
+}
+
 export default combineReducers({
   posts,
-  filtros
+  filtros,
+  usuario
 });
