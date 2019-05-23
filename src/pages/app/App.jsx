@@ -7,28 +7,29 @@ import { withStyles } from "@material-ui/core/styles";
 import styles from "./style.js";
 import PropTypes from "prop-types";
 import Navigation from "../components/navigation/Navigation";
-import Grid from '@material-ui/core/Grid';
-import Rotas from './Rotas'
+import Grid from "@material-ui/core/Grid";
+import Rotas from "./Rotas";
+import Footer from "../components/footer/Footer";
 
 class App extends Component {
   render() {
     const { classes } = this.props;
     return (
-          <div className={classes.cultyHeader}>
-            <Grid container spacing={24}>
-              <Grid item xs={12}>
-                <Navigation />
-              </Grid>
-              <Grid item xs={1}>
-              </Grid>
-              <Grid item xs={6}>
-                <Rotas />
-              </Grid>
-              <Grid item xs={2}>
-                <Filtro />
-              </Grid>
-            </Grid>
-          </div>
+      <div className={classes.cultyHeader}>
+        <Grid container spacing={24}>
+          <Grid item xs={12}>
+            <Navigation />
+          </Grid>
+          <Grid item xs={1} />
+          <Grid item xs={6}>
+            <Rotas />
+          </Grid>
+          <Grid item xs={2}>
+            <Filtro />
+          </Grid>
+        </Grid>
+        <Footer />
+      </div>
     );
   }
 }
