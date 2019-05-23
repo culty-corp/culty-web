@@ -1,16 +1,16 @@
 export default theme => ({
   estiloTexto: {
-    color: "#ECF2EC",
-    textAlign: "center"
+    color: '#ECF2EC',
+    textAlign: 'center'
   },
   estiloSubTitulo: {
-    color: "#FFDEB5",
-    textAlign: "center"
+    color: '#FFDEB5',
+    textAlign: 'center'
   },
   botao: {
-    color: "#ff9703"
+    color: '#ff9703'
   },
   avatar: {
-    backgroundColor: "#FF8C00"
+    backgroundColor: '#FF8C00'
   }
 });
