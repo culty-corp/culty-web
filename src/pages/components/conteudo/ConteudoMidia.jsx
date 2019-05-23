@@ -25,7 +25,7 @@ const ConteudoMidia = props => {
           <div className={classes.card}>
             <CardMedia title={postagemAtual.titulo}>
               <img
-                className={classes.mediaLarge}
+                className={classes.mediaLargePlayer}
                 src={postagemAtual.conteudoCard}
               />
             </CardMedia>
@@ -49,7 +49,7 @@ const ConteudoMidia = props => {
           <div className={classes.card}>
             <CardMedia title={postagemAtual.titulo}>
               <img
-                className={classes.mediaSmall}
+                className={classes.mediaSmallPlayer}
                 src={postagemAtual.conteudoCard}
               />
             </CardMedia>
