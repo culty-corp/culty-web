@@ -77,9 +77,12 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 3,
     backgroundColor: cores.laranja
   },
-  registro: {
+  submit: {
+    "&$submit:hover": {
+      backgroundColor: cores.laranjaHover
+    },
     marginTop: theme.spacing.unit * 3,
-    backgroundColor: '#d67d00'
+    backgroundColor: cores.laranja
   },
   estiloTexto: {
     color: "#ECF2EC"
@@ -154,10 +157,9 @@ class SignIn extends Component {
             />
             <FormControl margin="normal" required fullWidth>
               <Button
-              className={classes.registro}
+                className={classes.root}
                 component="button"
                 variant="body2"
-
                 onClick={() => this.props.history.push("/registro")}
               >
                 Registrar-se
@@ -165,7 +167,7 @@ class SignIn extends Component {
             </FormControl>
             <Button
               fullWidth
-              type='submit'
+              type="submit"
               variant="contained"
               color="primary"
               className={classes.submit}
@@ -193,8 +195,5 @@ const mapStateToProps = store => {
 };
 
 export default withRouter(
-  connect(
-    mapStateToProps,
-    Map.mapDispatchToProps
-  )(withStyles(styles)(SignIn))
+  connect(mapStateToProps, Map.mapDispatchToProps)(withStyles(styles)(SignIn))
 );
