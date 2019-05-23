@@ -9,10 +9,10 @@ A ideia inicial é fomentar a **produção artística e cultural na cidade de Go
 ## O trabalho
 O **projeto Culty** foi idealizado e produzido no contexto do curso de **Bacharelado em Engenharia de Software** do **INF-UFG** pelos desenvolvedores:
 
-- [https://github.com/gustavo-b](Gustavo Henrique da Silva Batista)
-- [https://github.com/sampaiodias](Lucas Sampaio Dias)
-- [https://github.com/murillonunes](Murillo Silva e Nunes)
-- [https://github.com/saulocalixto](Saulo de Araújo Calixto)
+- Gustavo Henrique da Silva Batista ([gustavo-b](https://github.com/gustavo-b))
+- Lucas Sampaio Dias ([sampaiodias](https://github.com/sampaiodias))
+- Murillo Silva e Nunes ([murillonunes](https://github.com/murillonunes))
+- Saulo de Araújo Calixto ([saulocalixto](https://github.com/saulocalixto))
 
 O projeto foi desenvolvido no contexto acadêmico para três disciplinas que foram ministradas simultâneamente e possuíam escopos com grande sobreposições entre si. As disciplinas em questão foram:
 
