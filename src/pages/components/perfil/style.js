@@ -1,9 +1,10 @@
 export default theme => ({
   card: {
-    maxWidth: 900,
+    width: 400,
     backgroundColor: "#1e1e1e",
-    width: "100%",
-    minHeight: "40vh"
+    position: "absolute",
+    minHeight: "40vh",
+    top: "10vh"
   },
   estiloTexto: {
     color: "#ECF2EC"

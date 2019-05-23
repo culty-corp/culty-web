@@ -6,31 +6,41 @@ export default theme => ({
     flexFlow: "row wrap",
     textAlign: "center",
     fontSize: "calc(10px + 2vmin)",
-    "cultyHeader > *": {
-      padding: "10px",
-      flex: "1 100%"
-    }
+    width: "100vw"
   },
   wrapperFiltro: {
-    order: "3",
-    alignSelf: "flex-start",
-    paddingTop: "10%",
-    paddingLeft: "15%",
+    position: "absolute",
+    right: "10%",
     width: "15%",
-    height: "30%"
+    height: "30%",
+    top: "25%"
   },
-  wrapNavigation: {
-    order: "4"
+  wrapperConteudoLarge: {
+    position: "absolute",
+    left: "20%",
+    width: "35%",
+    top: "25%"
   },
-  wrapNada: {
-    width: "30%",
-    order: "1"
+  wrapperGridLarge: {
+    position: "absolute",
+    top: "10vh",
+    left: "10vw"
   },
-  wrapperConteudo: {
-    padding: "10px",
-    width: "25%",
-    order: "2",
-    flex: "3 0px",
-    alignSelf: "center"
+  wrapperGridSmall: {
+    position: "absolute",
+    top: "15vh",
+    left: 0
+  },
+  centerDivLarge: {
+    position: "absolute",
+    top: "10vh",
+    left: "35vw",
+    marginBottom: "20vh"
+  },
+  centerDivSmall: {
+    position: "absolute",
+    top: "5vh",
+    left: "0",
+    marginBottom: "20vh"
   }
 });

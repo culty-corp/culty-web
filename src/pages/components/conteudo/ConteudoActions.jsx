@@ -10,7 +10,8 @@ import { withRouter } from "react-router-dom";
 import IconButton from "@material-ui/core/IconButton";
 import classnames from "classnames";
 import * as Map from "../../../Maps";
-import styles from "./style.js";
+import styles from "./conteudoActionsStyle";
+import MediaQuery from "react-responsive";
 
 import Grid from "@material-ui/core/Grid";
 
@@ -18,45 +19,96 @@ const ConteudoActions = props => {
   const { classes, postagemAtual } = props;
 
   return (
-    <CardActions className={classes.actions} disableActionSpacing>
-      <Grid
-        container
-        direction="row"
-        justify="space-evenly"
-        alignItems="center"
-      >
-        <IconButton
-          aria-label="Dislike"
-          className={classes.botaoDislike}
-          onClick={() => props.passarPost()}
-        >
-          <DislikeIcon />
-        </IconButton>
-
-        <IconButton aria-label="Compartilhar" className={classes.botaoShare}>
-          <ShareIcon />
-        </IconButton>
-        <IconButton
-          aria-label="Cultyr"
-          className={classes.botao}
-          onClick={() => props.passarPost()}
-        >
-          <LikeIcon />
-        </IconButton>
-        {postagemAtual.tipoMidia === "Texto" && (
-          <IconButton
-            className={classnames(classes.expand, {
-              [classes.expandOpen]: props.expanded
-            })}
-            onClick={() => props.expandirPostagem()}
-            aria-expanded={props.expanded}
-            aria-label="Quero ler mais"
+    <div>
+      <MediaQuery query="(min-device-width: 768px)">
+        <CardActions className={classes.actions} disableActionSpacing>
+          <Grid
+            container
+            direction="row"
+            justify="space-evenly"
+            alignItems="center"
           >
-            <ExpandMoreIcon />
-          </IconButton>
-        )}
-      </Grid>
-    </CardActions>
+            <IconButton
+              aria-label="Dislike"
+              className={classes.botaoDislike}
+              onClick={() => props.passarPost()}
+            >
+              <DislikeIcon />
+            </IconButton>
+
+            <IconButton
+              aria-label="Compartilhar"
+              className={classes.botaoShare}
+            >
+              <ShareIcon />
+            </IconButton>
+            <IconButton
+              aria-label="Cultyr"
+              className={classes.botaoLike}
+              onClick={() => props.passarPost()}
+            >
+              <LikeIcon />
+            </IconButton>
+            {postagemAtual.tipoMidia === "Texto" && (
+              <IconButton
+                className={classnames(classes.expand, {
+                  [classes.expandOpen]: props.expanded
+                })}
+                onClick={() => props.expandirPostagem()}
+                aria-expanded={props.expanded}
+                aria-label="Quero ler mais"
+              >
+                <ExpandMoreIcon />
+              </IconButton>
+            )}
+          </Grid>
+        </CardActions>
+      </MediaQuery>
+      <MediaQuery query="(max-device-width: 768px)">
+        <CardActions className={classes.actions} disableActionSpacing>
+          <Grid
+            container
+            direction="row"
+            justify="space-evenly"
+            alignItems="center"
+          >
+            <IconButton
+              aria-label="Dislike"
+              className={classes.botaoDislike}
+              onClick={() => props.passarPost()}
+            >
+              <DislikeIcon />
+            </IconButton>
+
+            <IconButton
+              aria-label="Compartilhar"
+              className={classes.botaoShare}
+            >
+              <ShareIcon />
+            </IconButton>
+            <IconButton
+              aria-label="Cultyr"
+              className={classes.botaoLike}
+              onClick={() => props.passarPost()}
+            >
+              <LikeIcon />
+            </IconButton>
+            {postagemAtual.tipoMidia === "Texto" && (
+              <IconButton
+                className={classnames(classes.expandSmall, {
+                  [classes.expandOpenSmall]: props.expanded
+                })}
+                onClick={() => props.expandirPostagem()}
+                aria-expanded={props.expanded}
+                aria-label="Quero ler mais"
+              >
+                <ExpandMoreIcon />
+              </IconButton>
+            )}
+          </Grid>
+        </CardActions>
+      </MediaQuery>
+    </div>
   );
 };
 

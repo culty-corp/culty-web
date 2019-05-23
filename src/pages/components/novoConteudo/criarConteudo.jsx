@@ -33,7 +33,7 @@ class CriarConteudo extends Component {
         const titulo = formulario.titulo.value;
         const resumo = formulario.resumo.value;
         const tipoConteudo = formulario.tipoConteudo.value;
-        const conteudo = tipoConteudo === 'texto' ? formulario.conteudo.value : this.state.files[0];
+        const conteudoCard = tipoConteudo === 'texto' ? formulario.conteudoCard.value : this.state.files[0];
 
         const post = {
             usuario: {},
@@ -41,7 +41,7 @@ class CriarConteudo extends Component {
             autor: 'Saulo Calixto',
             tipoMidia: tipoConteudo === 'texto' ? 'Texto' : 'Imagem',
             resumo,
-            conteudo: conteudo,
+            conteudoCard: conteudoCard,
             categorias: [
               "música",
               "mpb"
@@ -108,13 +108,13 @@ class CriarConteudo extends Component {
                                     filesLimit={1}
                                     />) :
                                 (<FormControl margin="normal" required fullWidth>
-                                    <InputLabel htmlFor="conteudo" classes={{ root: classes.root, focused: classes.focused }}>Conteúdo</InputLabel>
+                                    <InputLabel htmlFor="conteudoCard" classes={{ root: classes.root, focused: classes.focused }}>Conteúdo</InputLabel>
                                     <Input
                                         multiline={true}
                                         inputProps={{ maxLength: 1000 }}
-                                        name="conteudo"
-                                        id="conteudo"
-                                        autoComplete="conteudo"
+                                        name="conteudoCard"
+                                        id="conteudoCard"
+                                        autoComplete="conteudoCard"
                                         rows="10"
                                         classes={{ root: classes.root, underline: classes.underline }} />
                                 </FormControl>)

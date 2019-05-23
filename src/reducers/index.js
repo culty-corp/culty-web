@@ -1,51 +1,44 @@
 import { combineReducers } from "redux";
 
-export const initialStatePosts = { 
+export const initialStatePosts = {
   index: 0,
   postagemAtual: {
     usuario: {},
-    titulo: 'O Grito',
-    autor: 'Edvard Munch',
-    tipoMidia: 'Imagem',
-    resumo: 'Arte que criei enquanto observava universitários em fim de semestre.',
-    conteudo: require(`../assets/ogrito.jpg`),
-    categorias: [
-      "pintura",
-      "impressionismo"
-    ]
+    titulo: "O Grito",
+    autor: "Edvard Munch",
+    tipoMidia: "Imagem",
+    resumo:
+      "Arte que criei enquanto observava universitários em fim de semestre.",
+    conteudoCard: require(`../assets/ogrito.jpg`),
+    categorias: ["pintura", "impressionismo"]
   },
-  postagens : [
+  postagens: [
     {
       usuario: {},
-      titulo: 'O Grito',
-      autor: 'Edvard Munch',
-      tipoMidia: 'Imagem',
-      resumo: 'Arte que criei enquanto observava universitários em fim de semestre.',
-      conteudo: require(`../assets/ogrito.jpg`),
-      categorias: [
-        "pintura",
-        "impressionismo"
-      ]
+      titulo: "O Grito",
+      autor: "Edvard Munch",
+      tipoMidia: "Imagem",
+      resumo:
+        "Arte que criei enquanto observava universitários em fim de semestre.",
+      conteudoCard: require(`../assets/ogrito.jpg`),
+      categorias: ["pintura", "impressionismo"]
     },
     {
       usuario: {},
-      titulo: 'Quem te viu, quem te vê',
-      autor: 'Chico Buarque',
-      tipoMidia: 'Audio',
-      resumo: 'Um dia eu vi uma garota para nunca mais, criei essa música.',
-      conteudo: require(`../assets/ogrito.jpg`),
-      categorias: [
-        "música",
-        "mpb"
-      ]
+      titulo: "Quem te viu, quem te vê",
+      autor: "Chico Buarque",
+      tipoMidia: "Audio",
+      resumo: "Um dia eu vi uma garota para nunca mais, criei essa música.",
+      conteudoCard: require(`../assets/miku.jpg`),
+      categorias: ["música", "mpb"]
     },
     {
       usuario: {},
-      titulo: 'Ninguém é igual a ninguém',
-      autor: 'HG',
-      tipoMidia: 'Texto',
-      resumo: 'Todos são iguais, mas uns são mais iguais que os outros.',
-      conteudo: `Há tantos quadros na parede
+      titulo: "Ninguém é igual a ninguém",
+      autor: "HG",
+      tipoMidia: "Texto",
+      resumo: "Todos são iguais, mas uns são mais iguais que os outros.",
+      conteudoCard: `Há tantos quadros na parede
       Há tantas formas de se ver o mesmo quadro
       Há tanta gente pelas ruas
       Há tantas ruas e nenhuma é igual a outra
@@ -104,57 +97,54 @@ export const initialStatePosts = {
       Tão desiguais, tão desiguais
       
       Todos iguais, todos iguais`,
-      categorias: [
-        "música",
-        "rock",
-        "poesia"
-      ]
+      categorias: ["música", "rock", "poesia"]
     }
   ]
-}
+};
 
-export const initialStateFiltros = { 
-  filtros: [],
-}
+export const initialStateFiltros = {
+  filtros: []
+};
 
 const posts = (state = initialStatePosts, action) => {
   switch (action.type) {
     case "PASSAR_POST":
-        state.index = state.index + 1 > (state.postagens.length - 1) ? 0 : state.index + 1;
-        state.postagemAtual = state.postagens[state.index];
+      state.index =
+        state.index + 1 > state.postagens.length - 1 ? 0 : state.index + 1;
+      state.postagemAtual = state.postagens[state.index];
       return {
         ...state
       };
     case "ADICIONAR_POST":
-        state.postagens = [...state.postagens, action.post];
-        return {
-          ...state
-        };
+      state.postagens = [...state.postagens, action.post];
+      return {
+        ...state
+      };
     default:
       return state;
   }
-}
+};
 
 const filtros = (state = initialStateFiltros, action) => {
   switch (action.type) {
     case "ADD_FILTRO":
-        if(state.filtros.indexOf(action.filtro) === -1) {
-          state.filtros = [...state.filtros, action.filtro];
-        }
+      if (state.filtros.indexOf(action.filtro) === -1) {
+        state.filtros = [...state.filtros, action.filtro];
+      }
       return {
         ...state
       };
-      case "REMOVE_FILTRO":
-        if(state.filtros.indexOf(action.filtro) !== -1) {
-          state.filtros = state.filtros.filter(x => x !== action.filtro);
-        }
+    case "REMOVE_FILTRO":
+      if (state.filtros.indexOf(action.filtro) !== -1) {
+        state.filtros = state.filtros.filter(x => x !== action.filtro);
+      }
       return {
         ...state
       };
     default:
       return state;
   }
-}
+};
 
 export const initialStateUsuario = { 
   logado: true,
