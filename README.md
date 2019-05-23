@@ -1,68 +1,45 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Culty
 
-## Available Scripts
+## O que é?
+O **Culty** é uma rede social voltada para artistas independentes (músicos, escritores, pintores...) que muitas vezes não têm a arte como principal fonte de renda, mas que gostaria que o conteúdo artístico e cultural que produz pudesse chegar a outras pessoas. Isto sem depender do número de seguidores, por exemplo.
 
-In the project directory, you can run:
+## Como funciona?
+A ideia inicial é fomentar a **produção artística e cultural na cidade de Goiânia**. Para isso, o **Culty** tem como objetivo disponibilizar uma plataforma de para upload e compartilhamento de mídias nos formatos de **vídeo**, **áudio**, **texto** e **imagem**.
 
-### `npm start`
+## O trabalho
+O **projeto Culty** foi idealizado e produzido no contexto do curso de **Bacharelado em Engenharia de Software** do **INF-UFG** pelos alunos:
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Gustavo Henrique da Silva Batista
+- Lucas Sampaio Dias
+- Murillo Silva e Nunes
+- Marcos Rafael Souza
+- Saulo de Araújo Calixto
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+O projeto foi desenvolvido para três disciplinas que foram ministradas simultâneamente e possuíam grande sobreposição de escopos. As disciplinas em questão foram:
 
-### `npm test`
+- Desenvolvimento de Software para Dispositivos Ubíquos
+- Desenvolvimento de Software para Persistência
+- Desenvolvimento de Software para Web
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Como usar
 
-### `npm run build`
+### Scripts disponíveis
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Neste projeto, você pode executar os seguintes comandos:
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+#### `npm start`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Executa o aplicativo no modo de desenvolvimento.<br>
+Após executá-lo, abra [http://localhost:3000](http://localhost:3000) para visualizar no navegador.
 
-### `npm run eject`
+A página irá recarregar automaticamente quando você fizer alterações.<br>
+Além disso, você verá quaisquer erros no console.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+#### `npm test`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Executa o executor de testes no modo de observação interativo.<br>
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+#### `npm run build`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Cria o App para produção na pasta `build`.<br>
+Este comando agrupa corretamente o React no modo de produção e otimiza o build para obter o melhor desempenho possível.
