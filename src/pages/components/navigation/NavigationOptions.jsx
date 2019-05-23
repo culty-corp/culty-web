@@ -11,117 +11,145 @@ import ArtistasIcon from "@material-ui/icons/SupervisedUserCircleRounded";
 import EntrarIcon from "@material-ui/icons/ExitToApp";
 import SairIcon from "@material-ui/icons/Lock";
 import { Divider } from "@material-ui/core";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import * as Map from "../../../Maps";
+import { withStyles } from "@material-ui/core/styles";
+import styles from "./style.js";
 
-export const opcoesNavigation = props => {
-  let classes = props.classes;
-  let logado = props.logado;
+class OpcoesNavigation extends Component {
 
-  if (logado === true) {
-    return (
-      <div className={classes.list}>
-        <List>
-          {[
-            { label: "Explorar", path: "/" },
-            { label: "Seguindo", path: "/" },
-            { label: "Artistas", path: "/" }
-          ].map((text, index) => (
-            <ListItem button key={text.label}>
-              <ListItemIcon color="#ff9703">
-                {getPageIcon(text.label)}
-              </ListItemIcon>
-              <ListItemText
-                primary={text.label}
-                classes={{ primary: classes.primary }}
-                key={index}
-                onClick={() => classes.history.push(text.path)}
-              />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {[
-            { label: "Postar", path: "/novoConteudo" },
-            { label: "Perfil", path: "/perfil" },
-            { label: "Sair", path: "/entrar" }
-          ].map((text, index) => (
-            <ListItem button key={text.label}>
-              <ListItemIcon color="#ff9703">
-                {getPageIcon(text.label)}
-              </ListItemIcon>
-              <ListItemText
-                primary={text.label}
-                classes={{ primary: classes.primary }}
-                key={index}
-                onClick={() => classes.history.push(text.path)}
-              />
-            </ListItem>
-          ))}
-        </List>
-      </div>
-    );
-  } else {
-    return (
-      <div className={classes.list}>
-        <List>
-          {[
-            { label: "Explorar", path: "/" },
-            { label: "Seguindo", path: "/" },
-            { label: "Artistas", path: "/" }
-          ].map((text, index) => (
-            <ListItem button key={text.label}>
-              <ListItemIcon color="#ff9703">
-                {getPageIcon(text.label)}
-              </ListItemIcon>
-              <ListItemText
-                primary={text.label}
-                classes={{ primary: classes.primary }}
-                key={index}
-                onClick={() => classes.history.push(text.path)}
-              />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {[{ label: "Entrar", path: "/novoConteudo" }].map((text, index) => (
-            <ListItem button key={text.label}>
-              <ListItemIcon color="#ff9703">
-                {getPageIcon(text.label)}
-              </ListItemIcon>
-              <ListItemText
-                primary={text.label}
-                classes={{ primary: classes.primary }}
-                key={index}
-                onClick={() => classes.history.push(text.path)}
-              />
-            </ListItem>
-          ))}
-        </List>
-      </div>
-    );
+    getPageIcon = (index) => {
+      switch (index) {
+        case "Explorar":
+          return <ExplorarIcon />;
+        case "Postar":
+          return <PostarIcon />;
+        case "Seguindo":
+          return <SeguindoIcon />;
+        case "Perfil":
+          return <PerfilIcon />;
+        case "Artistas":
+          return <ArtistasIcon />;
+        case "Entrar":
+          return <EntrarIcon />;
+        case "Sair":
+          return <SairIcon />;
+        default:
+          break;
+      }
+  }
+
+  acoesDeMenu = (itens) => {
+    if(itens.label === 'Sair') {
+      this.props.deslogar();
+    }
+
+    this.props.history.push(itens.path);
+  }
+
+  render() {
+
+    const { classes, logado } = this.props;
+
+    if (logado === true) {
+      return (
+        <div className={classes.list}>
+          <List>
+            {[
+              { label: "Explorar", path: "/" },
+              { label: "Seguindo", path: "/" },
+              { label: "Artistas", path: "/" }
+            ].map((text, index) => (
+              <ListItem button key={text.label}>
+                <ListItemIcon className={ classes.icon }>
+                  { this.getPageIcon(text.label) }
+                </ListItemIcon>
+                <ListItemText
+                  primary={text.label}
+                  classes={{ primary: classes.primary }}
+                  key={index}
+                  onClick={() => this.acoesDeMenu(text) }
+                  />
+              </ListItem>
+            ))}
+          </List>
+          <Divider />
+          <List>
+            {[
+              { label: "Postar", path: "/novoConteudo" },
+              { label: "Perfil", path: "/perfil" },
+              { label: "Sair", path: "/entrar" }
+            ].map((text, index) => (
+              <ListItem button key={text.label}>
+                <ListItemIcon className={classes.icon}>
+                  { this.getPageIcon(text.label) }
+                </ListItemIcon>
+                <ListItemText
+                  primary={text.label}
+                  classes={{ primary: classes.primary }}
+                  key={index}
+                  onClick={() => this.acoesDeMenu(text)}
+                  />
+              </ListItem>
+            ))}
+          </List>
+        </div>
+      );
+    } else {
+      return (
+        <div className={classes.list}>
+          <List>
+            {[
+              { label: "Explorar", path: "/" },
+              { label: "Seguindo", path: "/" },
+              { label: "Artistas", path: "/" }
+            ].map((text, index) => (
+              <ListItem button key={text.label}>
+                <ListItemIcon className={classes.icon}>
+                  { this.getPageIcon(text.label) }
+                </ListItemIcon>
+                <ListItemText
+                  primary={text.label}
+                  classes={{ primary: classes.primary }}
+                  key={index}
+                  onClick={() => this.acoesDeMenu(text)}
+                  />
+              </ListItem>
+            ))}
+          </List>
+          <Divider />
+          <List>
+            {[{ label: "Entrar", path: "/entrar" }].map((text, index) => (
+              <ListItem button key={text.label}>
+                <ListItemIcon className={classes.icon}>
+                  { this.getPageIcon(text.label) }
+                </ListItemIcon>
+                <ListItemText
+                  primary={text.label}
+                  classes={{ primary: classes.primary }}
+                  key={index}
+                  onClick={() => this.acoesDeMenu(text)}
+                  />
+              </ListItem>
+            ))}
+          </List>
+        </div>
+      );
+    }
   }
 };
 
-function getPageIcon(index) {
-  switch (index) {
-    case "Explorar":
-      return <ExplorarIcon />;
-    case "Postar":
-      return <PostarIcon />;
-    case "Seguindo":
-      return <SeguindoIcon />;
-    case "Perfil":
-      return <PerfilIcon />;
-    case "Artistas":
-      return <ArtistasIcon />;
-    case "Entrar":
-      return <EntrarIcon />;
-    case "Sair":
-      return <SairIcon />;
-    default:
-      break;
-  }
-}
+const mapStateToProps = store => {
+  const usuario = store.usuario;
+  return {
+    ...usuario
+  };
+};
 
-export default opcoesNavigation;
+export default withRouter(
+  connect(
+    mapStateToProps,
+    Map.mapDispatchToProps
+  )(withStyles(styles)(OpcoesNavigation))
+);

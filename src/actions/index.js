@@ -24,3 +24,15 @@ export const removeFiltro = (filtro) => {
         filtro
     }
 }
+
+export const logar = () => {
+    return {
+        type: "LOGAR"
+    }
+}
+
+export const deslogar = () => {
+    return {
+        type: "DESLOGAR"
+    }
+}

@@ -2,7 +2,9 @@ import {
     passarPost,
     addFiltro,
     removeFiltro,
-    adicionarPost
+    adicionarPost,
+    logar,
+    deslogar
   } from './actions'
   
   export const mapDispatchToProps = (dispatch) => {
@@ -10,6 +12,8 @@ import {
       passarPost: () => dispatch(passarPost()),
       adicionarPost: (post) => dispatch(adicionarPost(post)),
       addFiltro: (filtro) => dispatch(addFiltro(filtro)),
-      removeFiltro: (filtro) => dispatch(removeFiltro(filtro))
+      removeFiltro: (filtro) => dispatch(removeFiltro(filtro)),
+      logue: () => dispatch(logar()),
+      deslogar: () => dispatch(deslogar())
     }
   }

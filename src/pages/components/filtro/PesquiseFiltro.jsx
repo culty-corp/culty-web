@@ -109,6 +109,10 @@ class DownshiftMultiple extends React.Component {
     this.setState({ inputValue: event.target.value });
   };
 
+  changeInput = item => {
+    this.setState({ inputValue: item });
+  };
+
   handleChange = item => {
     let { selectedItem } = this.state;
 
@@ -145,8 +149,8 @@ class DownshiftMultiple extends React.Component {
           getInputProps,
           getItemProps,
           isOpen,
-          inputValue: inputValue2,
-          selectedItem: selectedItem2,
+          inputValue: inputValue,
+          selectedItem: selectedItem,
           highlightedIndex,
         }) => (
           <div className={classes.container}>
@@ -170,13 +174,13 @@ class DownshiftMultiple extends React.Component {
             })}
             {isOpen ? (
               <Paper className={classes.paper} square>
-                {getSuggestions(inputValue2).map((suggestion, index) =>
+                {getSuggestions(inputValue).map((suggestion, index) =>
                   renderSuggestion({
                     suggestion,
                     index,
                     itemProps: getItemProps({ item: suggestion.label }),
                     highlightedIndex,
-                    selectedItem: selectedItem2,
+                    selectedItem: selectedItem,
                   }),
                 )}
               </Paper>

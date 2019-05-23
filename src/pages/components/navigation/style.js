@@ -1,3 +1,5 @@
+import * as cores from '../../../utils/cores'
+
 export default theme => ({
   root: {
     flexGrow: 1
@@ -28,5 +30,8 @@ export default theme => ({
   },
   primary: {
     color: "#ECF2EC"
+  },
+  icon: {
+    color: cores.laranja
   }
 });
