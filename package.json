@@ -12,6 +12,10 @@
     "react-scripts": "3.0.1",
     "save": "^2.3.3"
   },
+  "engines": {
+	"node": "10.15.3"
+	"npm": "6.4.1"
+  }
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
