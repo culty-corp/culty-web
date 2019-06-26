@@ -92,6 +92,7 @@ export const initialStateFiltros = {
 const posts = (state = initialStatePosts, action) => {
   switch (action.type) {
     case "PASSAR_POST":
+      state.postagens = [...state.postagens, action.obras];
       state.index =
         state.index + 1 > state.postagens.length - 1 ? 0 : state.index + 1;
       state.postagemAtual = state.postagens[state.index];
@@ -129,26 +130,26 @@ const filtros = (state = initialStateFiltros, action) => {
   }
 };
 
-export const initialStateUsuario = { 
-  logado: false,
-}
+export const initialStateUsuario = {
+  logado: false
+};
 
 const usuario = (state = initialStateUsuario, action) => {
   switch (action.type) {
     case "LOGAR":
-        state.logado = true;
+      state.logado = true;
       return {
         ...state
       };
-      case "DESLOGAR":
-        state.logado = false;
+    case "DESLOGAR":
+      state.logado = false;
       return {
         ...state
       };
     default:
       return state;
   }
-}
+};
 
 export default combineReducers({
   posts,
