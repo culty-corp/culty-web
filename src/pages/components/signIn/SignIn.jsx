@@ -13,7 +13,6 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import withStyles from "@material-ui/core/styles/withStyles";
 import * as cores from "../../../utils/cores";
-import Link from "@material-ui/core/Link";
 import { withRouter } from "react-router-dom";
 import * as Map from "../../../Maps";
 import { connect } from "react-redux";

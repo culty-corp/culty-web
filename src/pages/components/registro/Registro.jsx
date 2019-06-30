@@ -3,15 +3,11 @@ import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import FormControl from "@material-ui/core/FormControl";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import withStyles from "@material-ui/core/styles/withStyles";
-import Radio from "@material-ui/core/Radio";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import { DropzoneArea } from "material-ui-dropzone";
 import styles from "./style.js";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
@@ -19,7 +15,32 @@ import * as Map from "../../../Maps";
 import TextField from "@material-ui/core/TextField";
 
 class Registro extends Component {
-  state = { tipoConteudo: "texto", files: [] };
+
+  registrar = (event) => {
+    event.preventDefault();
+    const formulario = event.target;
+
+    const email = formulario.email.value
+    const senha = formulario.senha.value
+    const nome = formulario.nomeUsuario.value
+    const facebook = formulario.facebook.value
+    const instagram = formulario.instagram.value
+    const dataDeNascimento = formulario.date.value.split('-').reverse().join('/')
+
+    const usuario = {
+      nome,
+      email,
+      senha,
+      dataDeNascimento,
+      redesSociais: {
+        facebook,
+        instagram
+      } 
+    }
+    this.props.addUsuario(usuario).then(() => {
+      this.props.history.push("/entrar")
+    })
+  }
 
   render() {
     const { classes } = this.props;
@@ -35,7 +56,7 @@ class Registro extends Component {
           >
             Registrar
           </Typography>
-          <form className={classes.form}>
+          <form className={classes.form} onSubmit={this.registrar}>
             <FormControl margin="normal" required fullWidth>
               <InputLabel
                 htmlFor="nomeUsuario"
@@ -68,6 +89,46 @@ class Registro extends Component {
                 inputProps={{ maxLength: 40 }}
                 name="email"
                 autoComplete="email"
+                autoFocus
+                classes={{
+                  root: classes.root,
+                  focused: classes.focused,
+                  underline: classes.underline
+                }}
+              />
+            </FormControl>
+            <FormControl margin="normal" required fullWidth>
+              <InputLabel
+                htmlFor="facebook"
+                classes={{ root: classes.root, focused: classes.focused }}
+              >
+                Facebook
+              </InputLabel>
+              <Input
+                id="facebook"
+                inputProps={{ maxLength: 40 }}
+                name="facebook"
+                autoComplete="facebook"
+                autoFocus
+                classes={{
+                  root: classes.root,
+                  focused: classes.focused,
+                  underline: classes.underline
+                }}
+              />
+            </FormControl>
+            <FormControl margin="normal" required fullWidth>
+              <InputLabel
+                htmlFor="instagram"
+                classes={{ root: classes.root, focused: classes.focused }}
+              >
+                Instagram
+              </InputLabel>
+              <Input
+                id="instagram"
+                inputProps={{ maxLength: 40 }}
+                name="instagram"
+                autoComplete="instagram"
                 autoFocus
                 classes={{
                   root: classes.root,
@@ -119,7 +180,6 @@ class Registro extends Component {
               color="primary"
               className={classes.submit}
               type="submit"
-              onClick={() => this.props.history.push("/")}
             >
               Registrar-se
             </Button>

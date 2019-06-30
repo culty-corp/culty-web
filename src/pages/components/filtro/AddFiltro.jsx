@@ -1,11 +1,8 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import Chip from '@material-ui/core/Chip';
-import Paper from '@material-ui/core/Paper';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import * as Map from '../../../Maps'
-import Typography from '@material-ui/core/Typography';
 import styles from './style.js'
 import PesquiseFiltro from './PesquiseFiltro'
 
@@ -40,7 +37,7 @@ class AddFiltro extends React.Component {
 }
 
 const mapStateToProps = store => {
-  const filtros = store.filtros;
+  const filtros = store.posts;
   return {
     ...filtros
   };

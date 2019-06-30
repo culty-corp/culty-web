@@ -14,5 +14,11 @@ export default theme => ({
   estiloTexto: {
     color: '#ECF2EC',
     textAlign: 'center'
+  },
+  categorias: {
+    position: "relative",
+    bottom: 0,
+    color: '#ECF2EC',
+    textAlign: 'center'
   }
 });

@@ -3,12 +3,11 @@ import { withStyles } from "@material-ui/core/styles";
 import CardActions from "@material-ui/core/CardActions";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import LikeIcon from "@material-ui/icons/ThumbUp";
-import DislikeIcon from "@material-ui/icons/ThumbDown";
+import DislikeIcon from "@material-ui/icons/FastForward";
 import ShareIcon from "@material-ui/icons/Share";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import IconButton from "@material-ui/core/IconButton";
-import classnames from "classnames";
 import * as Map from "../../../Maps";
 import styles from "./conteudoActionsStyle";
 import MediaQuery from "react-responsive";
@@ -45,7 +44,7 @@ const ConteudoActions = props => {
             <IconButton
               aria-label="Cultyr"
               className={classes.botaoLike}
-              onClick={() => props.passarPost()}
+              onClick={() => {}}
             >
               <LikeIcon />
             </IconButton>

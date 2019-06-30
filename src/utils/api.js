@@ -1,4 +1,4 @@
-const api = "http://localhost:8080/culty";
+const api = "https://sifo.tech/culty";
 const headers = {
   "Content-Type": "application/json"
 };
@@ -37,13 +37,12 @@ export const createUsuario = usuario =>
     .then(data => data);
 
 export const updateUsuario = usuario =>
-  fetch(`${api}/usuarios`, {
+  fetch(`${api}/usuarios/${usuario.id}`, {
     method: "PUT",
     headers,
     body: JSON.stringify(usuario)
   })
-    .then(res => res.json())
-    .then(data => data);
+    .then(res => res.json());
 
 export const getAllObras = () =>
   fetch(`${api}/obras`, {

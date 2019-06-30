@@ -10,6 +10,7 @@ import styles from "./conteudoHeaderStyle";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
+import * as Map from "../../../Maps";
 
 class ConteudoHeader extends React.Component {
   state = {
@@ -66,6 +67,21 @@ class ConteudoHeader extends React.Component {
               >
                 Página do Artista
               </MenuItem>
+              {
+                postagemAtual.usuario.id === this.props.usuarioLogado.id ?
+                  <MenuItem
+                    onClick={() => {
+                      this.props.removeObra(postagemAtual.id).then(() => this.props.getAllObras()
+                      .then(() => {
+                        this.props.passarPost()
+                        this.props.history.push('/')
+                      }))
+                    }}
+                  >
+                    Excluir
+              </MenuItem>
+                  : <div></div>
+              }
             </Menu>
           </div>
         }
@@ -81,12 +97,14 @@ class ConteudoHeader extends React.Component {
 }
 
 const mapStateToProps = store => {
-  const postagemAtual = store.posts.postagemAtual;
+  const postagemAtual = store.posts.postagemAtual
+  const usuarioLogado = store.usuario.usuarioLogado
   return {
-    postagemAtual
+    postagemAtual,
+    usuarioLogado
   };
 };
 
 export default withRouter(
-  connect(mapStateToProps)(withStyles(styles)(ConteudoHeader))
+  connect(mapStateToProps, Map.mapDispatchToProps)(withStyles(styles)(ConteudoHeader))
 );

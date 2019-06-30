@@ -36,7 +36,7 @@ class FiltroAtual extends React.Component {
 }
 
 const mapStateToProps = store => {
-    const filtros = store.filtros;
+    const filtros = store.posts;
     return {
         ...filtros
     };

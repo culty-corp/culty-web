@@ -5,7 +5,10 @@ import {
   fetchAdicionarPost,
   fetchLogar,
   deslogar,
-  fetchGetAllObras
+  fetchGetAllObras,
+  fetchAdicionarUsuario,
+  fetchRemoveObra,
+  fetchAtualizarUsuario
 } from "./actions";
 
 export const mapDispatchToProps = dispatch => {
@@ -16,6 +19,9 @@ export const mapDispatchToProps = dispatch => {
     removeFiltro: filtro => dispatch(removeFiltro(filtro)),
     logue: (login) => dispatch(fetchLogar(login)),
     deslogar: () => dispatch(deslogar()),
-    getAllObras: () => dispatch(fetchGetAllObras())
+    getAllObras: () => dispatch(fetchGetAllObras()),
+    addUsuario:(usuario) => dispatch(fetchAdicionarUsuario(usuario)),
+    updateUsuario:(usuario) => dispatch(fetchAtualizarUsuario(usuario)),
+    removeObra:(id) => dispatch(fetchRemoveObra(id))
   };
 };

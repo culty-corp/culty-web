@@ -71,4 +71,11 @@ export default theme => ({
   label: {
     color: cores.corTexto
   },
+  button: {
+    margin: theme.spacing.unit * 2,
+    colorPrimary: cores.corTexto
+  },
+  textPrimary: {
+    color: cores.corTexto
+  }
 });

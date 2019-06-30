@@ -4,7 +4,6 @@ import { withStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import Collapse from "@material-ui/core/Collapse";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import ConteudoHeader from "./ConteudoHeader";
@@ -22,7 +21,9 @@ class ConteudoCard extends React.Component {
   };
 
   componentDidMount = () => {
-    if(this.props.postagens.length === 2) this.props.getAllObras();
+    if(this.props.postagens.length === 0) this.props.getAllObras().then(() => {
+      this.props.passarPost()
+    })
   }
 
   render() {
@@ -30,6 +31,8 @@ class ConteudoCard extends React.Component {
 
     return (
       <div>
+        { postagemAtual.titulo !== undefined ? 
+        <div>
         <MediaQuery query="(min-device-width: 768px)">
           <Card className={classes.cardLarge}>
             <ConteudoHeader />
@@ -46,6 +49,16 @@ class ConteudoCard extends React.Component {
                 )}
               </CardContent>
             <ConteudoMidia />
+            <Typography component="p" className={classes.categorias}>
+                Categorias
+              </Typography>
+              {postagemAtual.filtros.map(x => (
+                <Typography component="p" className={classes.categorias}>
+                  {x}
+                </Typography>
+              ))
+              
+              }
             <ConteudoActions
               expanded={this.state.expanded}
               expandirPostagem={() => this.expandirPostagem()}
@@ -74,6 +87,9 @@ class ConteudoCard extends React.Component {
             />
           </Card>
         </MediaQuery>
+        </div>
+        : <div>Aguarde...</div>
+        }
       </div>
     );
   }

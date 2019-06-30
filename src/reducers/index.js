@@ -1,71 +1,75 @@
 import { combineReducers } from "redux";
 
 export const initialStatePosts = {
-  index: 0,
-  postagemAtual: {
-    usuario: { nome: "Edvard Munch" },
-    titulo: "O Grito",
-    tipoMidia: "Imagem",
-    resumo:
-      "Arte que criei enquanto observava universitários em fim de semestre.",
-    conteudo: require(`../assets/ogrito.jpg`),
-    filtros: ["pintura", "impressionismo"]
-  },
-  postagens: [
+  index: -1,
+  postagemAtual: {},
+  filtros: [],
+  postagensCompletas: [],
+  postagens: [],
+  postagensFake: [
     {
-      usuario: { nome: "Zé Paulo" },
+      usuario: { id: '', nome: "Zé Paulo" },
       titulo: "O Grito",
       tipoMidia: "Imagem",
       resumo:
         "Arte que criei enquanto observava universitários em fim de semestre.",
-        conteudo: require(`../assets/ogrito.jpg`),
-      filtros: ["pintura", "impressionismo"]
+      conteudo: require(`../assets/ogrito.jpg`),
+      filtros: ["#pintura", "#impressionismo"]
     },
     {
-      usuario: { nome: "Menino da Puc" },
+      usuario: { id: '', nome: "Menino da Puc" },
       titulo: "Quem te viu, quem te vê",
       tipoMidia: "Audio",
       resumo: "Um dia eu vi uma garota para nunca mais, criei essa música.",
       conteudo: require(`../assets/miku.jpg`),
-      filtros: ["música", "mpb"]
+      filtros: ["#música", "#mpb"]
     },
   ]
 };
 
-export const initialStateFiltros = {
-  filtros: []
-};
-
 const posts = (state = initialStatePosts, action) => {
   let postagens = [];
+  let postagensCompletas = []
   switch (action.type) {
     case "PASSAR_POST":
-      state.postagens = [...state.postagens];
-      state.index =
-        state.index + 1 > state.postagens.length - 1 ? 0 : state.index + 1;
-      state.postagemAtual = state.postagens[state.index];
+      let postagensFiltradas
+      if (state.filtros.length > 0) {
+        postagensFiltradas = state.postagens.filter(x => x.filtros.filter(filtro => state.filtros.includes(filtro)).length > 0)
+        postagensFiltradas = postagensFiltradas.length > 0 ? postagensFiltradas : state.postagens
+        state.index = state.index + 1 > postagensFiltradas.length - 1 ? 0 : state.index + 1;
+        state.postagemAtual = postagensFiltradas[state.index]
+      } else {
+        postagensFiltradas = state.postagens
+        state.index = state.index + 1 > postagensFiltradas.length - 1 ? 0 : state.index + 1;
+        state.postagemAtual = state.postagens[state.index]
+      }
+
       return {
         ...state
       };
     case "ADICIONAR_POST":
-      state.postagens = [...state.postagens, action.post];
+      postagens = [...state.postagens, action.post];
+      postagensCompletas = [...state.postagensCompletas, action.post]
+      return {
+        ...state,
+        postagens,
+        postagensCompletas
+      };
+    case "GET_ALL_OBRAS":
+      postagens = [...state.postagensFake, ...action.obras];
+      postagensCompletas = [...state.postagensFake, ...action.obras]
+      return {
+        ...state,
+        postagens,
+        postagensCompletas
+      };
+    case "REMOVE_OBRA":
+        state.postagens = state.postagens.filter(x => x.usuarios.id !== action.idObra);
+        state.index = 0
+        state.postagemAtual = state.postagens[state.index]
       return {
         ...state
       };
-    case "GET_ALL_OBRAS":
-      postagens = [...state.postagens, ...action.obras];
-      console.log(postagens)
-      return {
-        ...state,
-        postagens
-      };
-    default:
-      return state;
-  }
-};
-
-const filtros = (state = initialStateFiltros, action) => {
-  switch (action.type) {
     case "ADD_FILTRO":
       if (state.filtros.indexOf(action.filtro) === -1) {
         state.filtros = [...state.filtros, action.filtro];
@@ -86,23 +90,34 @@ const filtros = (state = initialStateFiltros, action) => {
 };
 
 export const initialStateUsuario = {
-  logado: false
+  logado: false,
+  usuarioLogado: {}
 };
 
 const usuario = (state = initialStateUsuario, action) => {
   let logado = false;
+  let usuarioLogado = {}
   switch (action.type) {
     case "LOGAR":
       logado = action.login.sucesso;
+      usuarioLogado = action.login.usuario
       return {
         ...state,
-        logado
+        logado,
+        usuarioLogado
       };
     case "DESLOGAR":
       state.logado = false;
+      state.usuarioLogado = '';
       return {
         ...state
       };
+      case "ATUALIZAR_USUARIO":
+          usuarioLogado = action.usuario
+          return {
+            ...state,
+            usuarioLogado
+          };
     default:
       return state;
   }
@@ -110,6 +125,5 @@ const usuario = (state = initialStateUsuario, action) => {
 
 export default combineReducers({
   posts,
-  filtros,
   usuario
 });

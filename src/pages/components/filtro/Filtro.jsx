@@ -23,7 +23,7 @@ const Filtro = (props) => {
 
 const mapStateToProps = store => {
     const postagemAtual = store.posts.postagemAtual;
-    const filtros = store.filtros.filtros
+    const filtros = store.posts.filtros
     return {
         postagemAtual,
         filtros

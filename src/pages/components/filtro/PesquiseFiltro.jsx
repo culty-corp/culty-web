@@ -8,6 +8,9 @@ import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
 import Chip from '@material-ui/core/Chip';
 import * as cores from '../../../utils/cores'
+import * as Map from '../../../Maps'
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 const suggestions = [
     { label: '#Música' },
@@ -120,9 +123,10 @@ class DownshiftMultiple extends React.Component {
       selectedItem = [...selectedItem, item];
     }
 
+    this.props.addFiltro(item)
+
     this.setState({
-      inputValue: '',
-      selectedItem,
+      inputValue: ''
     });
   };
 
@@ -236,7 +240,7 @@ function PesquiseFiltro(props) {
 
   return (
       <div className={classes.root}>
-      <DownshiftMultiple classes={classes} />
+      <DownshiftMultiple classes={classes} addFiltro={props.addFiltro} />
       </div>
   );
 }
@@ -245,4 +249,13 @@ PesquiseFiltro.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(PesquiseFiltro);
+const mapStateToProps = store => {
+  const filtros = store.posts;
+  return {
+    ...filtros
+  };
+};
+
+export default withRouter(
+  connect(mapStateToProps, Map.mapDispatchToProps)(withStyles(styles)(PesquiseFiltro))
+);
