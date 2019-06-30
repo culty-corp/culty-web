@@ -23,7 +23,7 @@ class ConteudoHeader extends React.Component {
   handleCloseOptions = option => {
     this.setState({ anchorEl: null });
     if (option === "paginaArtista")
-      this.props.history.push("/artistas/" + this.props.postagemAtual.autor);
+      this.props.history.push("/artistas/" + this.props.postagemAtual.usuario.nome);
   };
 
   render() {
@@ -38,10 +38,10 @@ class ConteudoHeader extends React.Component {
               aria-label="Recipe"
               className={classes.avatar}
               onClick={() =>
-                this.props.history.push("/artistas/" + postagemAtual.autor)
+                this.props.history.push("/artistas/" + postagemAtual.usuario.nome)
               }
             >
-              {postagemAtual.autor.charAt(0)}
+              {postagemAtual.usuario.nome.charAt(0)}
             </Avatar>
           </Button>
         }

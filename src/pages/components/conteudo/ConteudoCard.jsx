@@ -12,6 +12,7 @@ import ConteudoActions from "./ConteudoActions";
 import ConteudoMidia from "./ConteudoMidia";
 import styles from "./conteudoCardStyle";
 import MediaQuery from "react-responsive";
+import * as Map from "../../../Maps";
 
 class ConteudoCard extends React.Component {
   state = { expanded: false };
@@ -19,6 +20,10 @@ class ConteudoCard extends React.Component {
   expandirPostagem = () => {
     this.setState(state => ({ expanded: !state.expanded }));
   };
+
+  componentDidMount = () => {
+    if(this.props.postagens.length === 2) this.props.getAllObras();
+  }
 
   render() {
     const { classes, postagemAtual } = this.props;
@@ -80,11 +85,13 @@ ConteudoCard.propTypes = {
 
 const mapStateToProps = store => {
   const postagemAtual = store.posts.postagemAtual;
+  const postagens = store.posts.postagens;
   return {
-    postagemAtual
+    postagemAtual,
+    postagens
   };
 };
 
 export default withRouter(
-  connect(mapStateToProps)(withStyles(styles)(ConteudoCard))
+  connect(mapStateToProps, Map.mapDispatchToProps)(withStyles(styles)(ConteudoCard))
 );

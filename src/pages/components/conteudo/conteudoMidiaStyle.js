@@ -52,5 +52,9 @@ export default theme => ({
   playIcon: {
     height: 38,
     width: 38
+  },
+  estiloTexto: {
+    color: '#ECF2EC',
+    textAlign: 'center'
   }
 });

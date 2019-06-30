@@ -8,6 +8,8 @@ import IconButton from "@material-ui/core/IconButton";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import styles from "./conteudoMidiaStyle";
 import MediaQuery from "react-responsive";
+import CardContent from "@material-ui/core/CardContent";
+import Typography from "@material-ui/core/Typography";
 
 const ConteudoMidia = props => {
   const { classes, postagemAtual } = props;
@@ -17,7 +19,7 @@ const ConteudoMidia = props => {
         {postagemAtual.tipoMidia === "Imagem" && (
           <CardMedia
             className={classes.mediaLarge}
-            image={postagemAtual.conteudoCard}
+            image={postagemAtual.conteudo}
             title={postagemAtual.titulo}
           />
         )}
@@ -26,7 +28,7 @@ const ConteudoMidia = props => {
             <CardMedia title={postagemAtual.titulo}>
               <img
                 className={classes.mediaLargePlayer}
-                src={postagemAtual.conteudoCard}
+                src={postagemAtual.conteudo}
               />
             </CardMedia>
             <div className={classes.playLarge}>
@@ -36,12 +38,21 @@ const ConteudoMidia = props => {
             </div>
           </div>
         )}
+        {postagemAtual.tipoMidia === "Texto" && (
+          <div className={classes.card}>
+            <CardContent>
+              <Typography component="p" className={classes.estiloTexto}>
+                {postagemAtual.conteudoTexto}
+              </Typography>
+            </CardContent>
+          </div>
+        )}
       </MediaQuery>
       <MediaQuery query="(max-device-width: 768px)">
         {postagemAtual.tipoMidia === "Imagem" && (
           <CardMedia
             className={classes.mediaSmall}
-            image={postagemAtual.conteudoCard}
+            image={postagemAtual.conteudo}
             title={postagemAtual.titulo}
           />
         )}
@@ -50,7 +61,7 @@ const ConteudoMidia = props => {
             <CardMedia title={postagemAtual.titulo}>
               <img
                 className={classes.mediaSmallPlayer}
-                src={postagemAtual.conteudoCard}
+                src={postagemAtual.conteudo}
               />
             </CardMedia>
             <div className={classes.playSmall}>

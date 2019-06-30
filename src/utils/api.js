@@ -1,6 +1,5 @@
-const api = "http://sifo.tech/culty/";
+const api = "http://localhost:8080/culty";
 const headers = {
-  //'Token': '459c1d6c-d3e1-4daa-b0e3-bfbdb1f310ad',
   "Content-Type": "application/json"
 };
 
@@ -75,6 +74,15 @@ export const createObra = obra =>
     method: "POST",
     headers,
     body: JSON.stringify(obra)
+  })
+    .then(res => res.json())
+    .then(data => data);
+
+export const efetueLogin = login =>
+  fetch(`${api}/login`, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(login)
   })
     .then(res => res.json())
     .then(data => data);

@@ -1,9 +1,8 @@
 import * as Api from "../utils/api";
 
-export const passarPost = obras => {
+export const passarPost = () => {
   return {
     type: "PASSAR_POST",
-    obras
   };
 };
 
@@ -13,6 +12,14 @@ export const adicionarPost = post => {
     post
   };
 };
+
+export const fetchAdicionarPost = (post) => dispatch =>
+Api.createObra(post).then(
+  obras => {
+    dispatch(adicionarPost(post));
+  },
+  erro => console.log(`Erro na requisição: ${erro}`)
+);
 
 export const addFiltro = filtro => {
   return {
@@ -28,11 +35,20 @@ export const removeFiltro = filtro => {
   };
 };
 
-export const logar = () => {
+export const logar = (login) => {
   return {
-    type: "LOGAR"
+    type: "LOGAR",
+    login
   };
 };
+
+export const fetchLogar = (login) => dispatch =>
+Api.efetueLogin(login).then(
+  login => {
+    dispatch(logar(login));
+  },
+  erro => console.log(`Erro na requisição: ${erro}`)
+);
 
 export const deslogar = () => {
   return {

@@ -3,85 +3,32 @@ import { combineReducers } from "redux";
 export const initialStatePosts = {
   index: 0,
   postagemAtual: {
-    usuario: {},
+    usuario: { nome: "Edvard Munch" },
     titulo: "O Grito",
-    autor: "Edvard Munch",
     tipoMidia: "Imagem",
     resumo:
       "Arte que criei enquanto observava universitários em fim de semestre.",
-    conteudoCard: require(`../assets/ogrito.jpg`),
-    categorias: ["pintura", "impressionismo"]
+    conteudo: require(`../assets/ogrito.jpg`),
+    filtros: ["pintura", "impressionismo"]
   },
   postagens: [
     {
-      usuario: {},
+      usuario: { nome: "Zé Paulo" },
       titulo: "O Grito",
-      autor: "Edvard Munch",
       tipoMidia: "Imagem",
       resumo:
         "Arte que criei enquanto observava universitários em fim de semestre.",
-      conteudoCard: require(`../assets/ogrito.jpg`),
-      categorias: ["pintura", "impressionismo"]
+        conteudo: require(`../assets/ogrito.jpg`),
+      filtros: ["pintura", "impressionismo"]
     },
     {
-      usuario: {},
+      usuario: { nome: "Menino da Puc" },
       titulo: "Quem te viu, quem te vê",
-      autor: "Chico Buarque",
       tipoMidia: "Audio",
       resumo: "Um dia eu vi uma garota para nunca mais, criei essa música.",
-      conteudoCard: require(`../assets/miku.jpg`),
-      categorias: ["música", "mpb"]
+      conteudo: require(`../assets/miku.jpg`),
+      filtros: ["música", "mpb"]
     },
-    {
-      usuario: {},
-      titulo: "Ninguém é igual a ninguém",
-      autor: "HG",
-      tipoMidia: "Texto",
-      resumo: "Todos são iguais, mas uns são mais iguais que os outros.",
-      conteudoCard: `Há tantos quadros na parede
-      Há tantas formas de se ver o mesmo quadro
-      Há tanta gente pelas ruas
-      Há tantas ruas e nenhuma é igual a outra
-      Ninguém é igual a ninguém
-      Me espanta que tanta gente sinta
-      (Se é que sente) A mesma indiferença
-      
-      Há tantos quadros na parede
-      Há tantas formas de se ver o mesmo quadro
-      Há palavras que nunca são ditas
-      Há muitas vozes repetindo a mesma frase:
-      Ninguém é igual a ninguém
-      Me espanta que tanta gente minta
-      (Descaradamente) a mesma mentira
-      
-      Todos iguais, todos iguais
-      Mas uns mais iguais que os outros
-      Todos iguais, todos iguais
-      Mas uns mais iguais que os outros
-      Todos iguais, todos iguais
-      Mas uns mais iguais
-      
-      Há pouca água e muita sede
-      Uma represa, um apartheid
-      (A vida seca, os olhos úmidos)
-      
-      Entre duas pessoas
-      Entre quatro paredes
-      Tudo fica claro
-      Ninguém fica indiferente
-      Ninguém é igual a ninguém
-      Me assusta que justamente agora
-      Todo mundo (tanta gente) tenha ido embora
-      
-      Todos iguais, todos iguais
-      Mas uns mais iguais que os outros
-      Todos iguais, todos iguais
-      Mas uns mais iguais que os outros
-      Todos iguais, todos iguais
-      Mas uns mais iguais, mas uns mais iguais, mas uns mais iguais
-      Que os outros`,
-      categorias: ["música", "rock", "poesia"]
-    }
   ]
 };
 
@@ -90,9 +37,10 @@ export const initialStateFiltros = {
 };
 
 const posts = (state = initialStatePosts, action) => {
+  let postagens = [];
   switch (action.type) {
     case "PASSAR_POST":
-      state.postagens = [...state.postagens, action.obras];
+      state.postagens = [...state.postagens];
       state.index =
         state.index + 1 > state.postagens.length - 1 ? 0 : state.index + 1;
       state.postagemAtual = state.postagens[state.index];
@@ -103,6 +51,13 @@ const posts = (state = initialStatePosts, action) => {
       state.postagens = [...state.postagens, action.post];
       return {
         ...state
+      };
+    case "GET_ALL_OBRAS":
+      postagens = [...state.postagens, ...action.obras];
+      console.log(postagens)
+      return {
+        ...state,
+        postagens
       };
     default:
       return state;
@@ -135,11 +90,13 @@ export const initialStateUsuario = {
 };
 
 const usuario = (state = initialStateUsuario, action) => {
+  let logado = false;
   switch (action.type) {
     case "LOGAR":
-      state.logado = true;
+      logado = action.login.sucesso;
       return {
-        ...state
+        ...state,
+        logado
       };
     case "DESLOGAR":
       state.logado = false;

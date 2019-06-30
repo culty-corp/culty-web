@@ -33,23 +33,60 @@ class CriarConteudo extends Component {
         const titulo = formulario.titulo.value;
         const resumo = formulario.resumo.value;
         const tipoConteudo = formulario.tipoConteudo.value;
-        const conteudoCard = tipoConteudo === 'texto' ? formulario.conteudoCard.value : this.state.files[0];
+        const conteudoTexto = tipoConteudo === 'texto' ? formulario.conteudoCard.value : "";
+        let conteudo
+        if(tipoConteudo !== "texto") {
+            this.readFileDataAsBase64(formulario[6].files[0]).then((resolve, reject) => {
+                conteudo = new Uint8Array(resolve);
+                const post = {
+                usuario: { id: '5ccda98baacad326400e9195', nome: 'Saulo Calixto' },
+                titulo,
+                tipoMidia: tipoConteudo === 'texto' ? 'Texto' : 'Imagem',
+                resumo,
+                conteudoTexto,
+                conteudo,
+                categorias: [
+                  "música",
+                  "mpb"
+                ]
+              };
+    
+              this.props.adicionarPost(post);
+              this.props.history.push("/");
+            })
+        } else {
+            const post = {
+                usuario: { id: '5ccda98baacad326400e9195', nome: 'Saulo Calixto' },
+                titulo,
+                tipoMidia: tipoConteudo === 'texto' ? 'Texto' : 'Imagem',
+                resumo,
+                conteudoTexto,
+                conteudo,
+                categorias: [
+                  "música",
+                  "mpb"
+                ]
+              };
+    
+              this.props.adicionarPost(post);
+              this.props.history.push("/");
+        }  
+    }
 
-        const post = {
-            usuario: {},
-            titulo,
-            autor: 'Saulo Calixto',
-            tipoMidia: tipoConteudo === 'texto' ? 'Texto' : 'Imagem',
-            resumo,
-            conteudoCard: conteudoCard,
-            categorias: [
-              "música",
-              "mpb"
-            ]
-          };
-
-          this.props.adicionarPost(post);
-          this.props.history.push("/");
+    readFileDataAsBase64 = (file) => {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+    
+            reader.onload = (event) => {
+                resolve(event.target.result);
+            };
+    
+            reader.onerror = (err) => {
+                reject(err);
+            };
+    
+            new Uint8Array(reader.readAsArrayBuffer(file));
+        });
     }
 
     render() {
@@ -102,12 +139,19 @@ class CriarConteudo extends Component {
                         </FormControl>
                         {
                             this.state.tipoConteudo === 'midia' ?
-                                (<DropzoneArea 
-                                    onChange={this.adicioneArquivos.bind(this)}
-                                    dropzoneText='Arraste aqui o conteúdo que deseja compartilhar'
-                                    dropZoneClass={classes.dropZone}
-                                    filesLimit={1}
-                                    />) :
+                                (<div><input
+                                    accept="image/*"
+                                    className={classes.input}
+                                    style={{ display: 'none' }}
+                                    id="raised-button-file"
+                                    multiple
+                                    type="file"
+                                  />
+                                  <label htmlFor="raised-button-file">
+                                    <Button variant="raised" component="span" className={classes.button}>
+                                      Upload
+                                    </Button>
+                                  </label> </div>) :
                                 (<FormControl margin="normal" required fullWidth>
                                     <InputLabel htmlFor="conteudoCard" classes={{ root: classes.root, focused: classes.focused }}>Conteúdo</InputLabel>
                                     <Input

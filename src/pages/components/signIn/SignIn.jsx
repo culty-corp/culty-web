@@ -17,6 +17,7 @@ import Link from "@material-ui/core/Link";
 import { withRouter } from "react-router-dom";
 import * as Map from "../../../Maps";
 import { connect } from "react-redux";
+import MensagemErro from './MensagemErro'
 
 const styles = theme => ({
   root: {
@@ -90,9 +91,29 @@ const styles = theme => ({
 });
 
 class SignIn extends Component {
-  logar = () => {
-    this.props.history.push("/");
-    this.props.logue();
+
+  state = {
+    open: false
+  }
+  
+  logar = (event) => {
+    event.preventDefault();
+    const formulario = event.target;
+
+    const email = formulario.email.value
+    const senha = formulario.password.value
+
+    const login = {
+      usuario : {
+        email,
+        senha
+      } 
+    }
+
+    this.props.logue(login).then(() => {
+      if(this.props.logado) this.props.history.push("/");
+      else this.setState({ open: true })
+    });
   };
 
   render() {
@@ -111,7 +132,7 @@ class SignIn extends Component {
           >
             Entrar
           </Typography>
-          <form className={classes.form}>
+          <form className={classes.form} onSubmit={this.logar}>
             <FormControl margin="normal" required fullWidth>
               <InputLabel
                 htmlFor="email"
@@ -171,13 +192,17 @@ class SignIn extends Component {
               variant="contained"
               color="primary"
               className={classes.submit}
-              onClick={() => this.logar()}
-              onKeyPress={() => this.logar()}
             >
               Entrar
             </Button>
           </form>
         </Paper>
+        <MensagemErro 
+          open={this.state.open} 
+          fechar={ () => this.setState({ open:false }) } 
+          abrir={ () => this.setState({ open:true }) } 
+          titulo="Falha no login"
+          mensagem="Ocorreu um erro de autenticação, verifique e-mail e senha fornecidos."/>
       </main>
     );
   }
