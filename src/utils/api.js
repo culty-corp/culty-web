@@ -1,4 +1,4 @@
-const api = "https://sifo.tech/culty";
+const api = "http://localhost:8080/culty";
 const headers = {
   "Content-Type": "application/json"
 };

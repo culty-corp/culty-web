@@ -73,9 +73,7 @@ class CriarConteudo extends Component {
             };
 
             this.props.adicionarPost(post).then(() => {
-                this.props.getAllObras().then(() => {
-                    this.props.history.push("/");
-                })
+                this.props.history.push("/");
             })
         }
     }

@@ -12,6 +12,45 @@ import Perfil from "../components/perfil/Perfil";
 import MediaQuery from "react-responsive";
 import styles from "./style.js";
 
+const Explorar = (classes) => {
+  return (<div>
+    <MediaQuery query="(min-device-width: 768px)">
+      <ul className={classes.wrapperGridLarge}>
+        <li style={{ listStyle: "none", float: "left", margin: "4px" }}>
+          <ConteudoCard />
+        </li>
+        <li
+          style={{
+            listStyle: "none",
+            float: "left",
+            margin: "4px",
+            width: "40vw"
+          }}
+        >
+          <Filtro />
+        </li>
+      </ul>
+    </MediaQuery>
+    <MediaQuery query="(max-device-width: 768px)">
+      <ul className={classes.wrapperGridSmall}>
+        <li
+          style={{
+            listStyle: "none",
+            float: "left",
+            margin: "4px",
+            width: "80vw"
+          }}
+        >
+          <Filtro />
+        </li>
+        <li style={{ listStyle: "none", float: "left", margin: "4px" }}>
+          <ConteudoCard />
+        </li>
+      </ul>
+    </MediaQuery>
+  </div>)
+}
+
 const Rotas = props => {
   const { classes } = props;
 
@@ -21,42 +60,7 @@ const Rotas = props => {
         exact
         path="/"
         render={() => (
-          <div>
-            <MediaQuery query="(min-device-width: 768px)">
-              <ul className={classes.wrapperGridLarge}>
-                <li style={{ listStyle: "none", float: "left", margin: "4px" }}>
-                  <ConteudoCard />
-                </li>
-                <li
-                  style={{
-                    listStyle: "none",
-                    float: "left",
-                    margin: "4px",
-                    width: "40vw"
-                  }}
-                >
-                  <Filtro />
-                </li>
-              </ul>
-            </MediaQuery>
-            <MediaQuery query="(max-device-width: 768px)">
-              <ul className={classes.wrapperGridSmall}>
-                <li
-                  style={{
-                    listStyle: "none",
-                    float: "left",
-                    margin: "4px",
-                    width: "80vw"
-                  }}
-                >
-                  <Filtro />
-                </li>
-                <li style={{ listStyle: "none", float: "left", margin: "4px" }}>
-                  <ConteudoCard />
-                </li>
-              </ul>
-            </MediaQuery>
-          </div>
+          Explorar(classes)
         )}
       />
       <Route
@@ -81,18 +85,20 @@ const Rotas = props => {
         exact
         path="/novoConteudo"
         render={() => (
-          <div>
-            <MediaQuery query="(min-device-width: 768px)">
-              <div className={classes.centerDivLarge}>
-                <CriarConteudo />
-              </div>
-            </MediaQuery>
-            <MediaQuery query="(max-device-width: 768px)">
-              <div className={classes.centerDivSmall}>
-                <CriarConteudo />
-              </div>
-            </MediaQuery>
-          </div>
+          Object.entries(props.usuarioLogado).length > 0 || props.usuarioLogado.constructor !== Object ?
+            <div>
+              <MediaQuery query="(min-device-width: 768px)">
+                <div className={classes.centerDivLarge}>
+                  <CriarConteudo />
+                </div>
+              </MediaQuery>
+              <MediaQuery query="(max-device-width: 768px)">
+                <div className={classes.centerDivSmall}>
+                  <CriarConteudo />
+                </div>
+              </MediaQuery>
+            </div>
+            : Explorar(classes)
         )}
       />
       <Route
@@ -117,22 +123,33 @@ const Rotas = props => {
         exact
         path="/perfil"
         render={() => (
-          <div>
-            <MediaQuery query="(min-device-width: 768px)">
-              <div className={classes.centerDivLarge}>
-                <Perfil />
-              </div>
-            </MediaQuery>
-            <MediaQuery query="(max-device-width: 768px)">
-              <div className={classes.centerDivSmall}>
-                <Perfil />
-              </div>
-            </MediaQuery>
-          </div>
+          Object.entries(props.usuarioLogado).length > 0 || props.usuarioLogado.constructor !== Object ?
+            <div>
+              <MediaQuery query="(min-device-width: 768px)">
+                <div className={classes.centerDivLarge}>
+                  <Perfil />
+                </div>
+              </MediaQuery>
+              <MediaQuery query="(max-device-width: 768px)">
+                <div className={classes.centerDivSmall}>
+                  <Perfil />
+                </div>
+              </MediaQuery>
+            </div>
+            : Explorar(classes)
         )}
       />
     </div>
   );
 };
 
-export default withRouter(connect()(withStyles(styles)(Rotas)));
+const mapStateToProps = store => {
+  const usuarioLogado = store.usuario.usuarioLogado
+  return {
+    usuarioLogado
+  };
+};
+
+export default withRouter(
+  connect(mapStateToProps)(withStyles(styles)(Rotas))
+);

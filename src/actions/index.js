@@ -15,8 +15,8 @@ export const adicionarPost = post => {
 
 export const fetchAdicionarPost = (post) => dispatch =>
 Api.createObra(post).then(
-  obras => {
-    dispatch(adicionarPost(post));
+  obra => {
+    dispatch(adicionarPost(obra));
   },
   erro => console.log(`Erro na requisição: ${erro}`)
 );
@@ -56,17 +56,18 @@ export const addFiltro = filtro => {
   };
 };
 
-export const removeObra = idObra => {
+export const removeObra = (idObra, resultado) => {
   return {
     type: "REMOVE_OBRA",
-    idObra
+    idObra,
+    resultado
   }
 }
 
 export const fetchRemoveObra = (idObra) => dispatch =>
 Api.deleteObra(idObra).then(
-  idObra => {
-    dispatch(removeObra(idObra));
+  resultado => {
+    dispatch(removeObra(idObra, resultado));
   },
   erro => console.log(`Erro na requisição: ${erro}`)
 );

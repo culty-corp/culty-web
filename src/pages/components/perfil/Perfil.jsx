@@ -55,7 +55,7 @@ class Perfil extends Component {
             variant="h5"
             className={classes.estiloTexto}
           >
-            Registrar
+            Perfil
           </Typography>
           <form className={classes.form} onSubmit={this.registrar}>
             <FormControl margin="normal" required fullWidth>

@@ -71,11 +71,10 @@ class ConteudoHeader extends React.Component {
                 postagemAtual.usuario.id === this.props.usuarioLogado.id ?
                   <MenuItem
                     onClick={() => {
-                      this.props.removeObra(postagemAtual.id).then(() => this.props.getAllObras()
-                      .then(() => {
+                      this.props.removeObra(postagemAtual.id).then(() => {
                         this.props.passarPost()
                         this.props.history.push('/')
-                      }))
+                      })
                     }}
                   >
                     Excluir

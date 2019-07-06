@@ -28,8 +28,10 @@ export const initialStatePosts = {
 };
 
 const posts = (state = initialStatePosts, action) => {
-  let postagens = [];
+  let postagens = []
   let postagensCompletas = []
+  let postagemAtual = {}
+  let index = 0
   switch (action.type) {
     case "PASSAR_POST":
       let postagensFiltradas
@@ -48,27 +50,34 @@ const posts = (state = initialStatePosts, action) => {
         ...state
       };
     case "ADICIONAR_POST":
-      postagens = [...state.postagens, action.post];
-      postagensCompletas = [...state.postagensCompletas, action.post]
+      const post = action.post.valor
+      postagens = [...state.postagens, post];
+      postagensCompletas = [...state.postagensCompletas, post]
       return {
         ...state,
         postagens,
         postagensCompletas
       };
     case "GET_ALL_OBRAS":
-      postagens = [...state.postagensFake, ...action.obras];
-      postagensCompletas = [...state.postagensFake, ...action.obras]
+      const obras = action.obras.valor
+      postagens = [...state.postagensFake, ...obras];
+      postagensCompletas = [...state.postagensFake, ...obras]
       return {
         ...state,
         postagens,
         postagensCompletas
       };
     case "REMOVE_OBRA":
-        state.postagens = state.postagens.filter(x => x.usuarios.id !== action.idObra);
-        state.index = 0
-        state.postagemAtual = state.postagens[state.index]
+        postagens = state.postagens.filter(x => x.id !== action.idObra);
+        postagensCompletas = postagens
+        index = 0
+        postagemAtual = state.postagens[state.index]
       return {
-        ...state
+        ...state,
+        postagens,
+        postagensCompletas,
+        index,
+        postagemAtual
       };
     case "ADD_FILTRO":
       if (state.filtros.indexOf(action.filtro) === -1) {
