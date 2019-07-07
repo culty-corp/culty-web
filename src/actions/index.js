@@ -21,6 +21,22 @@ Api.createObra(post).then(
   erro => console.log(`Erro na requisição: ${erro}`)
 );
 
+export const curtirPost = (resultado, obra) => {
+  return {
+    type: "CURTIR_POST",
+    resultado,
+    obra
+  };
+};
+
+export const fetchCurtirPost = (obra) => dispatch =>
+Api.updateObra(obra).then(
+  resultado => {
+    dispatch(curtirPost(resultado, obra));
+  },
+  erro => console.log(`Erro na requisição: ${erro}`)
+);
+
 export const adicionarUsuario = post => {
   return {
     type: "ADICIONAR_USUARIO",

@@ -1,4 +1,4 @@
-const api = "http://localhost:8080/culty";
+const api = "https://sifo.tech/culty/";
 const headers = {
   "Content-Type": "application/json"
 };
@@ -87,7 +87,7 @@ export const efetueLogin = login =>
     .then(data => data);
 
 export const updateObra = obra =>
-  fetch(`${api}/obras`, {
+  fetch(`${api}/obras/${obra.id}`, {
     method: "PUT",
     headers,
     body: JSON.stringify(obra)

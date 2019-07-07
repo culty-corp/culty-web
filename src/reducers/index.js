@@ -6,25 +6,6 @@ export const initialStatePosts = {
   filtros: [],
   postagensCompletas: [],
   postagens: [],
-  postagensFake: [
-    {
-      usuario: { id: '', nome: "Zé Paulo" },
-      titulo: "O Grito",
-      tipoMidia: "Imagem",
-      resumo:
-        "Arte que criei enquanto observava universitários em fim de semestre.",
-      conteudo: require(`../assets/ogrito.jpg`),
-      filtros: ["#pintura", "#impressionismo"]
-    },
-    {
-      usuario: { id: '', nome: "Menino da Puc" },
-      titulo: "Quem te viu, quem te vê",
-      tipoMidia: "Audio",
-      resumo: "Um dia eu vi uma garota para nunca mais, criei essa música.",
-      conteudo: require(`../assets/miku.jpg`),
-      filtros: ["#música", "#mpb"]
-    },
-  ]
 };
 
 const posts = (state = initialStatePosts, action) => {
@@ -58,10 +39,26 @@ const posts = (state = initialStatePosts, action) => {
         postagens,
         postagensCompletas
       };
+      case "CURTIR_POST":
+      const resultado = action.resultado
+      if(resultado.sucesso) {
+        postagemAtual = action.obra
+        postagens = state.postagens.filter(x => x.id !== postagemAtual.id);
+        postagens = [...postagens, postagemAtual];
+        postagensCompletas = [...postagens, postagemAtual]
+        index = postagens.length - 1
+      }
+      return {
+        ...state,
+        postagens,
+        postagensCompletas,
+        postagemAtual,
+        index
+      };
     case "GET_ALL_OBRAS":
       const obras = action.obras.valor
-      postagens = [...state.postagensFake, ...obras];
-      postagensCompletas = [...state.postagensFake, ...obras]
+      postagens = [...obras];
+      postagensCompletas = [...obras]
       return {
         ...state,
         postagens,

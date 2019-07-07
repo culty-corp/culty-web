@@ -19,7 +19,7 @@ const ConteudoMidia = props => {
         {postagemAtual.tipoMidia === "Imagem" && (
           <CardMedia
             className={classes.mediaLarge}
-            image={postagemAtual.conteudo}
+            image={postagemAtual.conteudoTexto}
             title={postagemAtual.titulo}
           />
         )}

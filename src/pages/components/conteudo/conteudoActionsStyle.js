@@ -5,6 +5,12 @@ export default theme => ({
     bottom: "2%",
     color: "#ff9703"
   },
+  botaoLikeJaCurtiram: {
+    position: "absolute",
+    left: "5%",
+    bottom: "2%",
+    color: "red"
+  },
   botaoShare: {
     position: "absolute",
     left: "45%",

@@ -39,6 +39,14 @@ class ConteudoCard extends React.Component {
             <CardContent>
               <Typography component="p" className={classes.estiloTexto}>
                 {postagemAtual.resumo}
+                <br /> <br />
+              {postagemAtual.filtros.map(x => (
+                <span className={classes.categorias}>
+                  {` ${x} `}
+                </span>
+              ))
+              
+              }
               </Typography>
             </CardContent>
             <CardContent>
@@ -49,16 +57,6 @@ class ConteudoCard extends React.Component {
                 )}
               </CardContent>
             <ConteudoMidia />
-            <Typography component="p" className={classes.categorias}>
-                Categorias
-              </Typography>
-              {postagemAtual.filtros.map(x => (
-                <Typography component="p" className={classes.categorias}>
-                  {x}
-                </Typography>
-              ))
-              
-              }
             <ConteudoActions
               expanded={this.state.expanded}
               expandirPostagem={() => this.expandirPostagem()}

@@ -16,7 +16,7 @@ import * as cores from "../../../utils/cores";
 import { withRouter } from "react-router-dom";
 import * as Map from "../../../Maps";
 import { connect } from "react-redux";
-import MensagemErro from './MensagemErro'
+import MensagemErro from '../MensagemErro'
 
 const styles = theme => ({
   root: {

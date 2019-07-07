@@ -17,6 +17,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import * as Map from '../../../Maps';
 import EscolhaDeCategorias from './EscolhaDeCategorias'
+import {storage} from '../../../utils/firebase';
 
 class CriarConteudo extends Component {
 
@@ -43,24 +44,36 @@ class CriarConteudo extends Component {
         const conteudoTexto = tipoConteudo === 'texto' ? formulario.conteudoCard.value : "";
         let conteudo
         if (tipoConteudo !== "texto") {
-            this.readFileDataAsBase64(formulario[6].files[0]).then((resolve, reject) => {
-                conteudo = new Uint8Array(resolve);
-                const post = {
-                    usuario: this.props.usuarioLogado,
-                    titulo,
-                    tipoMidia: tipoConteudo === 'texto' ? 'Texto' : 'Imagem',
-                    resumo,
-                    conteudoTexto,
-                    conteudo,
-                    filtros
-                };
-
-                this.props.adicionarPost(post).then(() => {
-                    this.props.getAllObras().then(() => {
+            const image = this.state.files[0];
+            const uploadTask = storage.ref(`images/${image.name}`).put(image);
+            uploadTask.on('state_changed', 
+            (snapshot) => {
+                // progrss function ....
+                // const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                // this.setState({progress});
+            }, 
+            (error) => {
+                // error function ....
+                console.log(error);
+            }, 
+            () => {
+                // complete function ....
+                storage.ref('images').child(image.name).getDownloadURL().then(url => {
+                    const post = {
+                        usuario: this.props.usuarioLogado,
+                        titulo,
+                        tipoMidia: tipoConteudo === 'texto' ? 'Texto' : 'Imagem',
+                        resumo,
+                        conteudoTexto : url,
+                        conteudo,
+                        filtros
+                    };
+        
+                    this.props.adicionarPost(post).then(() => {
                         this.props.history.push("/");
                     })
                 })
-            })
+            });
         } else {
             const post = {
                 usuario: this.props.usuarioLogado,
@@ -160,19 +173,12 @@ class CriarConteudo extends Component {
                         </FormControl>
                         {
                             this.state.tipoConteudo === 'midia' ?
-                                (<div><input
-                                    accept="image/*"
-                                    className={classes.input}
-                                    style={{ display: 'none' }}
-                                    id="raised-button-file"
-                                    multiple
-                                    type="file"
-                                />
-                                    <label htmlFor="raised-button-file">
-                                        <Button variant="raised" component="span" className={classes.button}>
-                                            Upload
-                                    </Button>
-                                    </label> </div>) :
+                                (<DropzoneArea 
+                                    onChange={this.adicioneArquivos.bind(this)}
+                                    dropzoneText='Arraste aqui o conteúdo que deseja compartilhar'
+                                    dropZoneClass={classes.dropZone}
+                                    filesLimit={1}
+                                    />) :
                                 (<FormControl margin="normal" required fullWidth>
                                     <InputLabel htmlFor="conteudoCard" classes={{ root: classes.root, focused: classes.focused }}>Conteúdo</InputLabel>
                                     <Input
