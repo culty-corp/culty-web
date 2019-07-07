@@ -70,7 +70,7 @@ const ConteudoActions = props => {
             alignItems="center"
           >
             <IconButton
-              aria-label="Dislike"
+              aria-label="Próximo"
               className={classes.botaoDislike}
               onClick={() => props.passarPost()}
               autoFocus={true}

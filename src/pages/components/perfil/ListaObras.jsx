@@ -5,15 +5,17 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import SendIcon from '@material-ui/icons/Send';
+import styles from "./style";
 
 const ListaObras = props => {
     const { titulo, postagens, classes } = props
     return (
         <List
+            className={classes.estiloTexto}
             component="nav"
             aria-labelledby="nested-list-subheader"
             subheader={
-                <ListSubheader component="div" id="nested-list-subheader">
+                <ListSubheader className={classes.estiloSubTitulo} component="div" id="nested-list-subheader">
                     {titulo}
                 </ListSubheader>
             }
@@ -23,10 +25,10 @@ const ListaObras = props => {
                 postagens
                     .map(obra => (
                         <ListItem button>
-                            <ListItemIcon>
+                            <ListItemIcon className={classes.botaoExpandir}>
                                 <SendIcon />
                             </ListItemIcon>
-                            <ListItemText primary={obra.titulo} />
+                            <ListItemText classes={ {primary:classes.estiloTexto}} primary={obra.titulo} />
                         </ListItem>
                     ))
             }

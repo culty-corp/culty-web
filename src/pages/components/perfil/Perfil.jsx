@@ -16,10 +16,9 @@ import { withRouter } from "react-router-dom";
 import * as Map from '../../../Maps';
 import withStyles from "@material-ui/core/styles/withStyles";
 import ListaObras from './ListaObras'
-import styles from "../registro/style.js";
+import styles from "./style";
 
 class Perfil extends Component {
-
 
   handleExpandClick = () => {
     this.setState({ expanded: !this.state.expanded });
@@ -30,12 +29,11 @@ class Perfil extends Component {
   }
 
   render() {
-    const { classes, usuarioPerfil, postagens, usuarioLogado } = this.props;
-
+    const { classes, usuarioPerfil, postagens, usuarioLogado } = this.props
     const { expanded } = this.state
 
     return (
-      <div className={classes.card}>
+      <div>
         <Typography
             className={classes.estiloTexto}
             component="h1"
@@ -43,10 +41,15 @@ class Perfil extends Component {
           >
             Perfil
           </Typography>
-      <Card className={classes.card}>
+      <Card classes={{ root: classes.cardPerfil}}>
         <CardHeader
+        classes={{
+          title: classes.estiloTexto,
+          subheader: classes.estiloSubTitulo
+        }}
           avatar={
-            <Avatar aria-label="Recipe" className={classes.avatar}>
+            <Avatar aria-label="Recipe" 
+            className={classes.avatarPerfil}>
               {usuarioPerfil.nome.charAt(0).toUpperCase()}
             </Avatar>
           }
@@ -65,7 +68,7 @@ class Perfil extends Component {
           {
             usuarioLogado.id === usuarioPerfil.id
             ? 
-            <IconButton aria-label="Editar perfil" onClick={ () => {
+            <IconButton className={classes.estiloTexto} aria-label="Editar perfil" onClick={ () => {
               this.props.alteraUsuarioPerfil(usuarioPerfil)
               this.props.history.push('/perfilEditar')
             } }>
@@ -75,12 +78,13 @@ class Perfil extends Component {
           }
           
           <IconButton
+          classes={{root: classes.estiloTexto}}
             className={clsx(classes.expand, {
               [classes.expandOpen]: expanded,
             })}
             onClick={this.handleExpandClick}
             aria-expanded={expanded}
-            aria-label="Show more"
+            aria-label="Revele-me os seus segredos!"
           >
             <ExpandMoreIcon />
           </IconButton>

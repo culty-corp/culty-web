@@ -1,20 +1,16 @@
 export default theme => ({
-  card: {
+  cardPerfil: {
     backgroundColor: "#1e1e1e",
-    position: "absolute",
-    minHeight: "30vh",
-    top: "15vh"
+    position: 'relative',
+    width: '30vw',
   },
   estiloTexto: {
     color: "#ECF2EC"
   },
-  botao: {
+  botaoExpandir: {
     color: "#ff9703"
   },
   botaoShare: {
-    color: "#ff9703"
-  },
-  botaoDislike: {
     color: "#ff9703"
   },
   actions: {
@@ -23,7 +19,7 @@ export default theme => ({
   expand: {
     transform: "rotate(0deg)",
     marginLeft: "auto",
-    color: "#FF8C00",
+    color: "#ff9703",
     transition: theme.transitions.create("transform", {
       duration: theme.transitions.duration.shortest
     })
@@ -31,28 +27,11 @@ export default theme => ({
   expandOpen: {
     transform: "rotate(180deg)"
   },
-  media: {
-    height: 0,
-    paddingTop: "56.25%" // 16:9
-  },
-  details: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center"
-  },
-  content: {
-    flex: "1 0 auto"
-  },
   cover: {
     width: 151
   },
   card: {
     maxWidth: 345,
-  },
-  media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
   },
   expand: {
     transform: 'rotate(0deg)',
@@ -65,24 +44,12 @@ export default theme => ({
     transform: 'rotate(180deg)',
   },
   avatar: {
-    backgroundColor: red[500],
-  },
-  controls: {
-    display: "flex",
-    alignItems: "center",
-    paddingLeft: theme.spacing.unit,
-    paddingBottom: theme.spacing.unit
-  },
-  playIcon: {
-    height: 38,
-    width: 38
+    backgroundColor: '#FF8C00',
   },
   estiloSubTitulo: {
     color: "#FFDEB5"
   },
-  avatar: {
-    margin: 20,
-    width: 80,
-    height: 80
+  avatarPerfil: {
+    backgroundColor: '#FF8C00'
   }
 });
