@@ -9,7 +9,8 @@ import {
   fetchAdicionarUsuario,
   fetchRemoveObra,
   fetchAtualizarUsuario,
-  fetchCurtirPost
+  fetchCurtirPost,
+  alteraUsuarioPerfil
 } from "./actions";
 
 export const mapDispatchToProps = dispatch => {
@@ -24,6 +25,7 @@ export const mapDispatchToProps = dispatch => {
     addUsuario:(usuario) => dispatch(fetchAdicionarUsuario(usuario)),
     updateUsuario:(usuario) => dispatch(fetchAtualizarUsuario(usuario)),
     removeObra:(id) => dispatch(fetchRemoveObra(id)),
-    curtirPost:(obra) => dispatch(fetchCurtirPost(obra))
+    curtirPost:(obra) => dispatch(fetchCurtirPost(obra)),
+    alteraUsuarioPerfil:(usuario) => dispatch(alteraUsuarioPerfil(usuario))
   };
 };

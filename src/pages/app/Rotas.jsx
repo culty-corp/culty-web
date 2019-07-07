@@ -9,6 +9,7 @@ import Registro from "../components/registro/Registro";
 import Filtro from "../components/filtro/Filtro";
 import ConteudoCard from "../components/conteudo/ConteudoCard";
 import Perfil from "../components/perfil/Perfil";
+import PerfilEditar from "../components/perfil/PerfilEditar";
 import MediaQuery from "react-responsive";
 import styles from "./style.js";
 
@@ -123,16 +124,36 @@ const Rotas = props => {
         exact
         path="/perfil"
         render={() => (
-          Object.entries(props.usuarioLogado).length > 0 || props.usuarioLogado.constructor !== Object ?
+          Object.entries(props.usuarioPerfil).length > 0 || props.usuarioPerfil.constructor !== Object ?
             <div>
               <MediaQuery query="(min-device-width: 768px)">
                 <div className={classes.centerDivLarge}>
-                  <Perfil />
+                  <Perfil usuario={props.usuarioLogado} />
                 </div>
               </MediaQuery>
               <MediaQuery query="(max-device-width: 768px)">
                 <div className={classes.centerDivSmall}>
                   <Perfil />
+                </div>
+              </MediaQuery>
+            </div>
+            : Explorar(classes)
+        )}
+      />
+      <Route
+        exact
+        path="/perfilEditar"
+        render={() => (
+          Object.entries(props.usuarioLogado).length > 0 || props.usuarioLogado.constructor !== Object ?
+            <div>
+              <MediaQuery query="(min-device-width: 768px)">
+                <div className={classes.centerDivLarge}>
+                  <PerfilEditar />
+                </div>
+              </MediaQuery>
+              <MediaQuery query="(max-device-width: 768px)">
+                <div className={classes.centerDivSmall}>
+                  <PerfilEditar />
                 </div>
               </MediaQuery>
             </div>
@@ -145,8 +166,10 @@ const Rotas = props => {
 
 const mapStateToProps = store => {
   const usuarioLogado = store.usuario.usuarioLogado
+  const usuarioPerfil = store.usuario.usuarioPerfil
   return {
-    usuarioLogado
+    usuarioLogado,
+    usuarioPerfil
   };
 };
 

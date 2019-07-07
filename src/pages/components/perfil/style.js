@@ -1,10 +1,9 @@
 export default theme => ({
   card: {
-    width: 400,
     backgroundColor: "#1e1e1e",
     position: "absolute",
-    minHeight: "40vh",
-    top: "10vh"
+    minHeight: "30vh",
+    top: "15vh"
   },
   estiloTexto: {
     color: "#ECF2EC"
@@ -47,6 +46,26 @@ export default theme => ({
   },
   cover: {
     width: 151
+  },
+  card: {
+    maxWidth: 345,
+  },
+  media: {
+    height: 0,
+    paddingTop: '56.25%', // 16:9
+  },
+  expand: {
+    transform: 'rotate(0deg)',
+    marginLeft: 'auto',
+    transition: theme.transitions.create('transform', {
+      duration: theme.transitions.duration.shortest,
+    }),
+  },
+  expandOpen: {
+    transform: 'rotate(180deg)',
+  },
+  avatar: {
+    backgroundColor: red[500],
   },
   controls: {
     display: "flex",

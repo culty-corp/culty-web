@@ -97,12 +97,14 @@ const posts = (state = initialStatePosts, action) => {
 
 export const initialStateUsuario = {
   logado: false,
-  usuarioLogado: {}
+  usuarioLogado: {},
+  usuarioPerfil: {}
 };
 
 const usuario = (state = initialStateUsuario, action) => {
   let logado = false;
   let usuarioLogado = {}
+  let usuarioPerfil = {}
   switch (action.type) {
     case "LOGAR":
       logado = action.login.sucesso;
@@ -124,6 +126,12 @@ const usuario = (state = initialStateUsuario, action) => {
             ...state,
             usuarioLogado
           };
+    case "ALTERA_USUARIO_PERFIL":
+      usuarioPerfil = action.usuario
+      return {
+        ...state,
+        usuarioPerfil
+      }
     default:
       return state;
   }

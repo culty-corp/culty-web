@@ -37,6 +37,13 @@ Api.updateObra(obra).then(
   erro => console.log(`Erro na requisição: ${erro}`)
 );
 
+export const alteraUsuarioPerfil = usuario => {
+  return {
+    type: "ALTERA_USUARIO_PERFIL",
+    usuario
+  };
+};
+
 export const adicionarUsuario = post => {
   return {
     type: "ADICIONAR_USUARIO",

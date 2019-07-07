@@ -8,13 +8,13 @@ import InputLabel from "@material-ui/core/InputLabel";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import withStyles from "@material-ui/core/styles/withStyles";
-import styles from "./style.js";
+import styles from "../registro/style.js";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import * as Map from "../../../Maps";
 import TextField from "@material-ui/core/TextField";
 
-class Registro extends Component {
+class PerfilEditar extends Component {
 
   registrar = (event) => {
     event.preventDefault();
@@ -22,13 +22,14 @@ class Registro extends Component {
 
     const email = formulario.email.value
     const senha = formulario.senha.value
-    const descricao = formulario.descricao.value
     const nome = formulario.nomeUsuario.value
     const facebook = formulario.facebook.value
     const instagram = formulario.instagram.value
+    const descricao = formulario.descricao.value
     const dataDeNascimento = formulario.date.value.split('-').reverse().join('/')
 
     const usuario = {
+      id: this.props.usuarioPerfil.id,
       nome,
       email,
       senha,
@@ -39,14 +40,13 @@ class Registro extends Component {
         instagram
       } 
     }
-    this.props.addUsuario(usuario).then(() => {
-      this.props.history.push("/entrar")
+    this.props.updateUsuario(usuario).then(() => {
+      this.props.history.push("/")
     })
   }
 
   render() {
     const { classes } = this.props;
-
     return (
       <main className={classes.main}>
         <CssBaseline />
@@ -56,7 +56,7 @@ class Registro extends Component {
             variant="h5"
             className={classes.estiloTexto}
           >
-            Registrar
+            Perfil
           </Typography>
           <form className={classes.form} onSubmit={this.registrar}>
             <FormControl margin="normal" required fullWidth>
@@ -70,6 +70,7 @@ class Registro extends Component {
                 id="nomeUsuario"
                 inputProps={{ maxLength: 40 }}
                 name="nomeUsuario"
+                defaultValue={this.props.usuarioPerfil.nome}
                 autoComplete="nomeUsuario"
                 autoFocus
                 classes={{
@@ -89,6 +90,7 @@ class Registro extends Component {
               <Input
                 id="email"
                 inputProps={{ maxLength: 40 }}
+                defaultValue={this.props.usuarioPerfil.email}
                 name="email"
                 autoComplete="email"
                 autoFocus
@@ -101,7 +103,9 @@ class Registro extends Component {
             </FormControl>
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="descricao" classes={{ root: classes.root, focused: classes.focused }}>Biografia</InputLabel>
-              <Input multiline={true} inputProps={{ maxLength: 300 }} name="descricao" id="descricao" autoComplete="descricao" classes={{ root: classes.root, focused: classes.focused, underline: classes.underline }} />
+              <Input 
+                defaultValue={ this.props.usuarioPerfil.descricao }
+                multiline={true} inputProps={{ maxLength: 300 }} name="descricao" id="descricao" autoComplete="descricao" classes={{ root: classes.root, focused: classes.focused, underline: classes.underline }} />
             </FormControl>
             <FormControl margin="normal" required fullWidth>
               <InputLabel
@@ -112,6 +116,7 @@ class Registro extends Component {
               </InputLabel>
               <Input
                 id="facebook"
+                defaultValue={ this.props.usuarioPerfil.redesSociais.facebook ? this.props.usuarioPerfil.redesSociais.facebook : "" }
                 inputProps={{ maxLength: 40 }}
                 name="facebook"
                 autoComplete="facebook"
@@ -134,6 +139,7 @@ class Registro extends Component {
                 id="instagram"
                 inputProps={{ maxLength: 40 }}
                 name="instagram"
+                defaultValue={ this.props.usuarioPerfil.redesSociais.instagram ? this.props.usuarioPerfil.redesSociais.instagram : "" }
                 autoComplete="instagram"
                 autoFocus
                 classes={{
@@ -156,6 +162,7 @@ class Registro extends Component {
                 name="senha"
                 id="senha"
                 autoComplete="senha"
+                defaultValue={ this.props.usuarioPerfil.senha }
                 classes={{
                   root: classes.root,
                   focused: classes.focused,
@@ -168,6 +175,7 @@ class Registro extends Component {
                 id="date"
                 label="Data de nascimento"
                 type="date"
+                defaultValue={ this.props.usuarioPerfil.dataDeNascimento.split('/').reverse().join('-') }
                 InputProps={{
                   classes: {
                     input: classes.root,
@@ -187,7 +195,7 @@ class Registro extends Component {
               className={classes.submit}
               type="submit"
             >
-              Registrar-se
+              Atualizar
             </Button>
           </form>
         </Paper>
@@ -196,17 +204,19 @@ class Registro extends Component {
   }
 }
 
-Registro.propTypes = {
+PerfilEditar.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
 const mapStateToProps = store => {
   const postagemAtual = store.posts.postagemAtual;
+  const usuarioPerfil = store.usuario.usuarioPerfil
   return {
-    postagemAtual
+    postagemAtual,
+    usuarioPerfil
   };
 };
 
 export default withRouter(
-  connect(mapStateToProps, Map.mapDispatchToProps)(withStyles(styles)(Registro))
+  connect(mapStateToProps, Map.mapDispatchToProps)(withStyles(styles)(PerfilEditar))
 );

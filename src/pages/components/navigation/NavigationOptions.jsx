@@ -45,6 +45,10 @@ class OpcoesNavigation extends Component {
       this.props.deslogar();
     }
 
+    if(itens.label === 'Perfil') {
+      this.props.alteraUsuarioPerfil(this.props.usuarioLogado)
+    }
+
     this.props.history.push(itens.path);
   }
 
