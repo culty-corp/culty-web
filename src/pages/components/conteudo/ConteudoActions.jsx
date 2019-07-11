@@ -84,14 +84,8 @@ const ConteudoActions = props => {
             </IconButton>
 
             <IconButton
-              aria-label="Compartilhar"
-              className={classes.botaoShare}
-            >
-              <ShareIcon />
-            </IconButton>
-            <IconButton
               aria-label="Cultyr"
-              className={props.usuarioLogado.listaObrasGostadas && props.usuarioLogado.listaObrasGostadas.some(x => x === props.postagemAtual.id) ? classes.botaoLikeJaCurtiram : classes.botaoLike}
+              className={classes.botaoLike}
               onClick={(e) => CurtirPost(e, props)}
             >
               <LikeIcon />
